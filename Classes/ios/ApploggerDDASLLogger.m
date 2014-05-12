@@ -8,6 +8,12 @@
 
 #import "ApploggerDDASLLogger.h"
 #import "ApploggerManager.h"
+#import <asl.h>
+
+@interface ApploggerDDASLLogger(){
+    aslclient client;
+}
+@end
 
 @implementation ApploggerDDASLLogger
 

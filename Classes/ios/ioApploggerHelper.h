@@ -15,16 +15,6 @@
 + (NSString*) getPlatform;
 
 /*
- * add setting for Applogger
- */
-+ (void) addGlobalSetting:(NSObject*) setting ForKey:(NSString*) key;
-
-/*
- * get Applogger setting
- */
-+ (NSObject*) getSettingForKey:(NSString*) key;
-
-/*
  * create a bit 64 string
  */
 +(NSString *)createBase64String:(NSData *) data WithLength:(unsigned long) length;

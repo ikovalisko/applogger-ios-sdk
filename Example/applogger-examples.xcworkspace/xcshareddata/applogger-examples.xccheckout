@@ -5,15 +5,15 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>688A8449-1193-4D38-B4D1-013C5FCF6C32</string>
+	<string>7A2B3D8E-874A-4CEB-9BC9-DA4335A8AFE7</string>
 	<key>IDESourceControlProjectName</key>
 	<string>applogger-examples</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>05919840-A10E-4F15-AD93-55594542FC2A</key>
-		<string>https://github.com/dei79/beaver-ios-sdk.git</string>
 		<key>1D075FE8-1B37-45CD-9020-0032DFF3798D</key>
 		<string>https://github.com/pkyeck/socket.IO-objc.git</string>
+		<key>68E74B68-9D9C-4F0D-9986-54AD2C0793B3</key>
+		<string>https://github.com/applogger/applogger-ios-sdk.git</string>
 		<key>C6A5F4D0-D9CE-408C-BB88-F60A9D92CB63</key>
 		<string>https://github.com/square/SocketRocket.git</string>
 	</dict>
@@ -21,28 +21,28 @@
 	<string>Example/applogger-examples.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>05919840-A10E-4F15-AD93-55594542FC2A</key>
-		<string>../..</string>
 		<key>1D075FE8-1B37-45CD-9020-0032DFF3798D</key>
 		<string>../../socket.io</string>
+		<key>68E74B68-9D9C-4F0D-9986-54AD2C0793B3</key>
+		<string>../..</string>
 		<key>C6A5F4D0-D9CE-408C-BB88-F60A9D92CB63</key>
 		<string>../../socket.io/submodules/socket-rocket</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/dei79/beaver-ios-sdk.git</string>
+	<string>https://github.com/applogger/applogger-ios-sdk.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>05919840-A10E-4F15-AD93-55594542FC2A</string>
+	<string>68E74B68-9D9C-4F0D-9986-54AD2C0793B3</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>05919840-A10E-4F15-AD93-55594542FC2A</string>
+			<string>68E74B68-9D9C-4F0D-9986-54AD2C0793B3</string>
 			<key>IDESourceControlWCCName</key>
-			<string>beaver-ios-sdk</string>
+			<string>applogger-ios-sdk</string>
 		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>

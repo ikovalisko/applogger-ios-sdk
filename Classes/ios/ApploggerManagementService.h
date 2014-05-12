@@ -16,8 +16,6 @@ typedef void (^ALMSRequestDataStreamConfigurationCompletionHandler)(AppLoggerLog
 
 + (id) service:(NSString*)applicationIdentifier withSecret:(NSString*)applicationSecret andServiceUri:(NSString*)serviceUri;
 
-- (id) init:(NSString*)applicationIdentifier withSecret:(NSString*)applicationSecret andServiceUri:(NSString*)serviceUri;
-
 - (NSString*) deviceIdentifier;
 
 - (void) announceDevice:(ALMSAnnounceDeviceCompletionHandler)completion;

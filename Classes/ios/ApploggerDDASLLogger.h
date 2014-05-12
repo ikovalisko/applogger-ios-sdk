@@ -8,11 +8,8 @@
 
 #import "DDLog.h"
 #import <Foundation/Foundation.h>
-#import <asl.h>
 
-@interface ApploggerDDASLLogger : DDAbstractLogger <DDLogger>{
-    aslclient client;
-}
+@interface ApploggerDDASLLogger : DDAbstractLogger <DDLogger>
 
 + (instancetype)sharedInstance;
 

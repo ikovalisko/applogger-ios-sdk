@@ -22,44 +22,6 @@
                               encoding:NSUTF8StringEncoding];
 }
 
-+ (void) addGlobalSetting:(NSObject*) setting ForKey:(NSString*) key{
-    NSMutableDictionary *settingsDict = [[NSMutableDictionary alloc] init];
-    
-    // if settings exists use it
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"ioAppLoggerSettings"])
-        settingsDict = [[NSUserDefaults standardUserDefaults] objectForKey:@"ioAppLoggerSettings"];
-    
-    // set setting in dict
-    [settingsDict setObject:setting forKey:key];
-    
-    // replace old settings dict
-    [[NSUserDefaults standardUserDefaults] setObject:settingsDict forKey:@"ioAppLoggerSettings"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    settingsDict = nil;
-}
-
-+ (NSObject *)getSettingForKey:(NSString *)key{
-    
-    // check if Applogger settings exists
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"ioAppLoggerSettings"]){
-        
-        // check if setting exists
-        if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"ioAppLoggerSettings"] objectForKey:key])
-            return [[[NSUserDefaults standardUserDefaults] objectForKey:@"ioAppLoggerSettings"] objectForKey:key];
-        else
-            return nil;
-        
-    }else
-        return nil;
-    
-}
-
-+(void) resetSettings{
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"ioAppLoggerSettings"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
 +(NSString *)createBase64String:(NSData *) data WithLength:(unsigned long) length {
 #if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_6_1
     SEL base64EncodingSelector = NSSelectorFromString(@"base64EncodedStringWithOptions:");
