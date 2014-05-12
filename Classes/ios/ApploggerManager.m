@@ -26,6 +26,7 @@
     BOOL _isCurrentlyEstablishingAConnection;
     
     NSOperationQueue *_logQueue;
+    
 }
 
 @property (nonatomic, strong) AppLoggerWebSocketConnection* webSocketConnection;
@@ -88,83 +89,100 @@
     _applicationSecret = secret;
 }
 
--(NSString*) getAssignDeviceLink{
+-(NSString*)getAssignDeviceLink{
     return [[[NSString
              stringWithFormat:@"%@/%@%@/%@/new?identifier=%@&name=%@&hwtype=%@&ostype=%@", _apiURL, _applicationsPath,
              _applicationIdentifier, _devicePath, [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString], [[UIDevice currentDevice] name], [ioBeaverHelper getPlatform], [[UIDevice currentDevice] systemVersion]] stringByReplacingOccurrencesOfString:@"harvester/" withString:@""] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
--(void) startApploggerManagerWithCompletion:(ALManagerInitiateCompletionHandler) completion{
+-(void)startApploggerManagerWithCompletion:(ALManagerInitiateCompletionHandler)completion{
     
-    if (_applicationIdentifier) {
+    // only connect if not already started
+    if (!_loggingIsStarted) {
         
-        NSError __block * error = nil;
-
-        // check whether the client socket is alread connected
-        if (![_clientSocket isConnected])
-        {
-
-            [self connectWebSocketWithCompletion:^(BOOL successfull, NSError *error){
-
-                if (completion)
-                    completion((error ? NO : YES), error);
-    
-            }];
+        if (_applicationIdentifier) {
             
-            return;
-        }else{
-            // Create error that could not get stream information
-            error = [NSError errorWithDomain:@"AppLoggerManagerError" code:-1 userInfo:@{@"Message": @"Couldn't establish a connection to server"}];
+            _loggingIsStarted = YES;
 
-            // log connection is established
+            NSError __block * error = nil;
+
+            // check whether the client socket is alread connected
+            if (![_clientSocket isConnected])
+            {
+
+                [self connectWebSocketWithCompletion:^(BOOL successfull, NSError *error){
+
+                    if (completion)
+                        completion((error ? NO : YES), error);
+        
+                }];
+                
+                return;
+            }else{
+                // Create error that could not get stream information
+                error = [NSError errorWithDomain:@"AppLoggerManagerError" code:-1 userInfo:@{@"Message": @"Couldn't establish a connection to server"}];
+
+                // log connection is established
+            }
+            
+            if (completion)
+                completion(NO, error);
+
+        }else{
+            // Create error that app identifier not set and call completion
+            NSError *error = [NSError errorWithDomain:@"AppLoggerManagerError" code:-1 userInfo:@{@"Message": @"ApplicationIdentifier is not set"}];
+            if (completion)
+               completion(NO, error);
         }
         
-        if (completion)
-            completion(NO, error);
-
-    }else{
-        // Create error that app identifier not set and call completion
-        NSError *error = [NSError errorWithDomain:@"AppLoggerManagerError" code:-1 userInfo:@{@"Message": @"ApplicationIdentifier is not set"}];
-        if (completion)
-           completion(NO, error);
     }
+    
+}
+
+-(void)stopApploggerManager{
+    _loggingIsStarted = NO;
+    [_clientSocket disconnect];
 
 }
 
--(void) addLogMessage:(AppLoggerLogMessage*) message{
+-(void)addLogMessage:(AppLoggerLogMessage*)message{
 
-    @try {
-        if (![_webSocketConnection canSendLog]){
-            
-            if (![_logQueue isSuspended]) {
-                [_logQueue setSuspended:YES];
-                [self connectWebSocketWithCompletion:^(BOOL successfull, NSError *error){
-                    [_logQueue setSuspended:NO];
-                }];
-            }
-            
-        }
+    if (_loggingIsStarted){
         
         @try {
-            [_logQueue addOperationWithBlock:^{
-                    @try {
-                        // send log when connection is available
-                        if (_webSocketConnection)
-                            [_webSocketConnection log:message];
-                    }
-                    @catch (NSException *exception) {
-                    }
-            }];
+            if (![_webSocketConnection canSendLog]){
+                
+                if (![_logQueue isSuspended]) {
+                    [_logQueue setSuspended:YES];
+                    [self connectWebSocketWithCompletion:^(BOOL successfull, NSError *error){
+                        [_logQueue setSuspended:NO];
+                    }];
+                }
+                
+            }
+            
+            @try {
+                [_logQueue addOperationWithBlock:^{
+                        @try {
+                            // send log when connection is available
+                            if (_webSocketConnection)
+                                [_webSocketConnection log:message];
+                        }
+                        @catch (NSException *exception) {
+                        }
+                }];
+            }
+            @catch (NSException *exception) {
+            }
         }
         @catch (NSException *exception) {
         }
-    }
-    @catch (NSException *exception) {
-    }
     
+    }
+
 }
 
--(void) connectWebSocketWithCompletion:(ALSocketConnectionCompletionHandler) completion{
+-(void)connectWebSocketWithCompletion:(ALSocketConnectionCompletionHandler)completion{
     
     NSError* __block neterror = nil;
     

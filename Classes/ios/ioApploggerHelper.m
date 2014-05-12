@@ -11,7 +11,7 @@
 
 @implementation ioBeaverHelper
 
-+ (NSString*) getPlatform{
++ (NSString*)getPlatform{
     
     // get system info
     struct utsname systemInfo;
@@ -22,7 +22,7 @@
                               encoding:NSUTF8StringEncoding];
 }
 
-+(NSString *)createBase64String:(NSData *) data WithLength:(unsigned long) length {
++(NSString *)createBase64String:(NSData *)data WithLength:(unsigned long)length {
 #if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_6_1
     SEL base64EncodingSelector = NSSelectorFromString(@"base64EncodedStringWithOptions:");
     if ([data respondsToSelector:base64EncodingSelector]) {

@@ -10,7 +10,5 @@
 #import "ioBaseViewController.h"
 @interface ioSingleLogViewController : ioBaseViewController
 
-@property (nonatomic, weak) IBOutlet UITextView *registerLinkTextView;
-
 - (IBAction)sendSingleLogClickHandler:(id)sender;
 @end

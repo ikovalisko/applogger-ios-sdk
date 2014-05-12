@@ -17,6 +17,11 @@ typedef void (^ALSocketConnectionCompletionHandler)(BOOL successfull, NSError *e
 @interface ApploggerManager : NSObject
 
 /*
+ * Indicator whether applogger is started
+ */
+@property (readonly) BOOL loggingIsStarted;
+
+/*
  * create a shared instance of this class
  */
 + (ApploggerManager *)sharedApploggerManager;
@@ -26,26 +31,32 @@ typedef void (^ALSocketConnectionCompletionHandler)(BOOL successfull, NSError *e
  * and is normally only used for debuggin against a development system when you 
  * are an SDK author
  */
--(void) setServiceUri:(NSString*)serviceUri;
+-(void)setServiceUri:(NSString*)serviceUri;
     
 /*
  * set application identifier
  */
--(void) setApplicationIdentifier:(NSString*) identifier AndSecret:(NSString*) secret;
+-(void) setApplicationIdentifier:(NSString*)identifier AndSecret:(NSString*)secret;
 
 /*
  * start the Applogger
  * create stream and connect to server
  */
--(void) startApploggerManagerWithCompletion:(ALManagerInitiateCompletionHandler) completion;
+-(void)startApploggerManagerWithCompletion:(ALManagerInitiateCompletionHandler)completion;
+
+/*
+ * stop the Applogger
+ * disconnect from server
+ */
+-(void)stopApploggerManager;
 
 /*
  * add MEssage to Log stream on server
  */
--(void) addLogMessage:(AppLoggerLogMessage*) message;
+-(void)addLogMessage:(AppLoggerLogMessage*)message;
 
 /*
  * Temporarily Method to get assign link from app
  */
--(NSString*) getAssignDeviceLink;
+-(NSString*)getAssignDeviceLink;
 @end

@@ -23,6 +23,7 @@
 		242DBDDE19212FE800F6FAB7 /* ioLoopLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 242DBDDA19212FE800F6FAB7 /* ioLoopLogViewController.m */; };
 		242DBDDF19212FE800F6FAB7 /* ioSingleLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 242DBDDC19212FE800F6FAB7 /* ioSingleLogViewController.m */; };
 		242DBDE119212FF200F6FAB7 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 242DBDE019212FF200F6FAB7 /* Settings.bundle */; };
+		245612751921476D000B8B69 /* ioStartStopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 245612741921476D000B8B69 /* ioStartStopViewController.m */; };
 		24611FB5192132E60014FEE9 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24611FB1192132E60014FEE9 /* Main_iPad.storyboard */; };
 		24611FB6192132E60014FEE9 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24611FB3192132E60014FEE9 /* Main_iPhone.storyboard */; };
 		B6BA995F7F314A21BBB02806 /* libPods-applogger-examples.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F93DD2D77373461A8DDCEF34 /* libPods-applogger-examples.a */; };
@@ -62,6 +63,8 @@
 		242DBDDB19212FE800F6FAB7 /* ioSingleLogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioSingleLogViewController.h; sourceTree = "<group>"; };
 		242DBDDC19212FE800F6FAB7 /* ioSingleLogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ioSingleLogViewController.m; sourceTree = "<group>"; };
 		242DBDE019212FF200F6FAB7 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = Settings/Settings.bundle; sourceTree = "<group>"; };
+		245612731921476D000B8B69 /* ioStartStopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioStartStopViewController.h; sourceTree = "<group>"; };
+		245612741921476D000B8B69 /* ioStartStopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ioStartStopViewController.m; sourceTree = "<group>"; };
 		24611FB2192132E60014FEE9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		24611FB4192132E60014FEE9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		24611FBA1921388F0014FEE9 /* applogger-examples-Info.Continuous.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "applogger-examples-Info.Continuous.plist"; sourceTree = "<group>"; };
@@ -142,6 +145,8 @@
 				242DBDAC19212F6300F6FAB7 /* ioAppDelegate.m */,
 				242DBDBA19212F6300F6FAB7 /* Images.xcassets */,
 				242DBDA319212F6300F6FAB7 /* Supporting Files */,
+				245612731921476D000B8B69 /* ioStartStopViewController.h */,
+				245612741921476D000B8B69 /* ioStartStopViewController.m */,
 			);
 			path = "applogger-examples";
 			sourceTree = "<group>";
@@ -316,6 +321,7 @@
 				242DBDAD19212F6300F6FAB7 /* ioAppDelegate.m in Sources */,
 				242DBDA919212F6300F6FAB7 /* main.m in Sources */,
 				242DBDDE19212FE800F6FAB7 /* ioLoopLogViewController.m in Sources */,
+				245612751921476D000B8B69 /* ioStartStopViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

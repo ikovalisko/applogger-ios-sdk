@@ -16,5 +16,7 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+-(void) showMessage:(NSString*) message;
+
 -(void) hideMessage:(NSTimer *)timer;
 @end

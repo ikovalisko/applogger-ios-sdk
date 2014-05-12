@@ -9,7 +9,7 @@
 #import "ioAppDelegate.h"
 #import <HockeySDK/HockeySDK.h>
 #import "ApploggerManager.h"
-#import "ioSingleLogViewController.h"
+#import "ioStartStopViewController.h"
 #import "DDTTYLogger.h"
 #import "DDASLLogger.h"
 
@@ -82,7 +82,7 @@
         
         if (successfull) {
             [self showMessage:@"Applogger connection established"];
-            [[(ioSingleLogViewController*)[[self.window.rootViewController childViewControllers] objectAtIndex:0] registerLinkTextView] setText:[[ApploggerManager sharedApploggerManager] getAssignDeviceLink]];
+            [[(ioStartStopViewController*)[[self.window.rootViewController childViewControllers] objectAtIndex:0] registerLinkTextView] setText:[[ApploggerManager sharedApploggerManager] getAssignDeviceLink]];
         }else{
             [self showMessage:[NSString stringWithFormat:@"Applogger connection failed : %@", error.localizedDescription]];
         }

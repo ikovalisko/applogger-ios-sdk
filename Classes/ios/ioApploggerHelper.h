@@ -12,12 +12,12 @@
 /*
  * get platform for device (ex iPhone1,1)
  */
-+ (NSString*) getPlatform;
++ (NSString*)getPlatform;
 
 /*
  * create a bit 64 string
  */
-+(NSString *)createBase64String:(NSData *) data WithLength:(unsigned long) length;
++(NSString *)createBase64String:(NSData *)data WithLength:(unsigned long)length;
 +(NSString *)createBase64StringFromString:(NSString*)string;
 
 
