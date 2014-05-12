@@ -1,0 +1,34 @@
+//
+//  ioBeaverHelper.h
+//  Pods
+//
+//  Created by Mirko Olsiewicz on 18.03.14.
+//
+//
+
+#import <Foundation/Foundation.h>
+
+@interface ioBeaverHelper : NSObject
+/*
+ * get platform for device (ex iPhone1,1)
+ */
++ (NSString*) getPlatform;
+
+/*
+ * add setting for Applogger
+ */
++ (void) addGlobalSetting:(NSObject*) setting ForKey:(NSString*) key;
+
+/*
+ * get Applogger setting
+ */
++ (NSObject*) getSettingForKey:(NSString*) key;
+
+/*
+ * create a bit 64 string
+ */
++(NSString *)createBase64String:(NSData *) data WithLength:(unsigned long) length;
++(NSString *)createBase64StringFromString:(NSString*)string;
+
+
+@end

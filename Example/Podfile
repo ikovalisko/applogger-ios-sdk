@@ -1,0 +1,27 @@
+workspace 'applogger-examples.xcworkspace'
+xcodeproj 'applogger-examples/applogger-examples.xcodeproj'
+xcodeproj 'applogger-unittest-app/applogger-unittest-app.xcodeproj'
+
+target "applogger-examples" do
+	xcodeproj 'applogger-examples/applogger-examples.xcodeproj'
+	platform :ios, '6.0'
+	pod 'apploggerSDK', :path => '../apploggerSDK.podspec'
+	pod 'MBProgressHUD', '>= 0.8'
+	pod 'HockeySDK', '>=3.5.4'
+	pod 'CocoaLumberjack'
+end
+
+target "applogger-examplesTests" do
+	xcodeproj 'applogger-examples/applogger-examples.xcodeproj'
+end
+
+target "applogger-unittest-app" do 
+	xcodeproj 'applogger-unittest-app/applogger-unittest-app.xcodeproj'
+	pod 'apploggerSDK', :path => '../apploggerSDK.podspec'
+end
+
+target "applogger-unittest-appTests" do 
+	xcodeproj 'applogger-unittest-app/applogger-unittest-app.xcodeproj'
+	pod 'apploggerSDK', :path => '../apploggerSDK.podspec'
+end
+

@@ -1,0 +1,622 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		242DBD9D19212F6300F6FAB7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 242DBD9C19212F6300F6FAB7 /* Foundation.framework */; };
+		242DBD9F19212F6300F6FAB7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 242DBD9E19212F6300F6FAB7 /* CoreGraphics.framework */; };
+		242DBDA119212F6300F6FAB7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 242DBDA019212F6300F6FAB7 /* UIKit.framework */; };
+		242DBDA719212F6300F6FAB7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 242DBDA519212F6300F6FAB7 /* InfoPlist.strings */; };
+		242DBDA919212F6300F6FAB7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 242DBDA819212F6300F6FAB7 /* main.m */; };
+		242DBDAD19212F6300F6FAB7 /* ioAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 242DBDAC19212F6300F6FAB7 /* ioAppDelegate.m */; };
+		242DBDBB19212F6300F6FAB7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 242DBDBA19212F6300F6FAB7 /* Images.xcassets */; };
+		242DBDC219212F6300F6FAB7 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 242DBDC119212F6300F6FAB7 /* XCTest.framework */; };
+		242DBDC319212F6300F6FAB7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 242DBD9C19212F6300F6FAB7 /* Foundation.framework */; };
+		242DBDC419212F6300F6FAB7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 242DBDA019212F6300F6FAB7 /* UIKit.framework */; };
+		242DBDCC19212F6300F6FAB7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 242DBDCA19212F6300F6FAB7 /* InfoPlist.strings */; };
+		242DBDCE19212F6300F6FAB7 /* applogger_examplesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 242DBDCD19212F6300F6FAB7 /* applogger_examplesTests.m */; };
+		242DBDDD19212FE800F6FAB7 /* ioBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 242DBDD819212FE800F6FAB7 /* ioBaseViewController.m */; };
+		242DBDDE19212FE800F6FAB7 /* ioLoopLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 242DBDDA19212FE800F6FAB7 /* ioLoopLogViewController.m */; };
+		242DBDDF19212FE800F6FAB7 /* ioSingleLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 242DBDDC19212FE800F6FAB7 /* ioSingleLogViewController.m */; };
+		242DBDE119212FF200F6FAB7 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 242DBDE019212FF200F6FAB7 /* Settings.bundle */; };
+		24611FB5192132E60014FEE9 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24611FB1192132E60014FEE9 /* Main_iPad.storyboard */; };
+		24611FB6192132E60014FEE9 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24611FB3192132E60014FEE9 /* Main_iPhone.storyboard */; };
+		B6BA995F7F314A21BBB02806 /* libPods-applogger-examples.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F93DD2D77373461A8DDCEF34 /* libPods-applogger-examples.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		242DBDC519212F6300F6FAB7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 242DBD9119212F6200F6FAB7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 242DBD9819212F6300F6FAB7;
+			remoteInfo = "applogger-examples";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		242DBD9919212F6300F6FAB7 /* applogger-examples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "applogger-examples.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		242DBD9C19212F6300F6FAB7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		242DBD9E19212F6300F6FAB7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		242DBDA019212F6300F6FAB7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		242DBDA419212F6300F6FAB7 /* applogger-examples-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "applogger-examples-Info.plist"; sourceTree = "<group>"; };
+		242DBDA619212F6300F6FAB7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		242DBDA819212F6300F6FAB7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		242DBDAA19212F6300F6FAB7 /* applogger-examples-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "applogger-examples-Prefix.pch"; sourceTree = "<group>"; };
+		242DBDAB19212F6300F6FAB7 /* ioAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ioAppDelegate.h; sourceTree = "<group>"; };
+		242DBDAC19212F6300F6FAB7 /* ioAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ioAppDelegate.m; sourceTree = "<group>"; };
+		242DBDBA19212F6300F6FAB7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		242DBDC019212F6300F6FAB7 /* applogger-examplesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "applogger-examplesTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		242DBDC119212F6300F6FAB7 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		242DBDC919212F6300F6FAB7 /* applogger-examplesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "applogger-examplesTests-Info.plist"; sourceTree = "<group>"; };
+		242DBDCB19212F6300F6FAB7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		242DBDCD19212F6300F6FAB7 /* applogger_examplesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = applogger_examplesTests.m; sourceTree = "<group>"; };
+		242DBDD719212FE800F6FAB7 /* ioBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioBaseViewController.h; sourceTree = "<group>"; };
+		242DBDD819212FE800F6FAB7 /* ioBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ioBaseViewController.m; sourceTree = "<group>"; };
+		242DBDD919212FE800F6FAB7 /* ioLoopLogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioLoopLogViewController.h; sourceTree = "<group>"; };
+		242DBDDA19212FE800F6FAB7 /* ioLoopLogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ioLoopLogViewController.m; sourceTree = "<group>"; };
+		242DBDDB19212FE800F6FAB7 /* ioSingleLogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioSingleLogViewController.h; sourceTree = "<group>"; };
+		242DBDDC19212FE800F6FAB7 /* ioSingleLogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ioSingleLogViewController.m; sourceTree = "<group>"; };
+		242DBDE019212FF200F6FAB7 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = Settings/Settings.bundle; sourceTree = "<group>"; };
+		24611FB2192132E60014FEE9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		24611FB4192132E60014FEE9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		24611FBA1921388F0014FEE9 /* applogger-examples-Info.Continuous.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "applogger-examples-Info.Continuous.plist"; sourceTree = "<group>"; };
+		BB95D0814DD14C918FE9CE04 /* Pods-applogger-examples.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-applogger-examples.xcconfig"; path = "../Pods/Pods-applogger-examples.xcconfig"; sourceTree = "<group>"; };
+		F93DD2D77373461A8DDCEF34 /* libPods-applogger-examples.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-applogger-examples.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		242DBD9619212F6300F6FAB7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				242DBD9F19212F6300F6FAB7 /* CoreGraphics.framework in Frameworks */,
+				242DBDA119212F6300F6FAB7 /* UIKit.framework in Frameworks */,
+				242DBD9D19212F6300F6FAB7 /* Foundation.framework in Frameworks */,
+				B6BA995F7F314A21BBB02806 /* libPods-applogger-examples.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		242DBDBD19212F6300F6FAB7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				242DBDC219212F6300F6FAB7 /* XCTest.framework in Frameworks */,
+				242DBDC419212F6300F6FAB7 /* UIKit.framework in Frameworks */,
+				242DBDC319212F6300F6FAB7 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		242DBD9019212F6200F6FAB7 = {
+			isa = PBXGroup;
+			children = (
+				242DBDA219212F6300F6FAB7 /* applogger-examples */,
+				242DBDC719212F6300F6FAB7 /* applogger-examplesTests */,
+				242DBD9B19212F6300F6FAB7 /* Frameworks */,
+				242DBD9A19212F6300F6FAB7 /* Products */,
+				BB95D0814DD14C918FE9CE04 /* Pods-applogger-examples.xcconfig */,
+			);
+			sourceTree = "<group>";
+		};
+		242DBD9A19212F6300F6FAB7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				242DBD9919212F6300F6FAB7 /* applogger-examples.app */,
+				242DBDC019212F6300F6FAB7 /* applogger-examplesTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		242DBD9B19212F6300F6FAB7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				242DBD9C19212F6300F6FAB7 /* Foundation.framework */,
+				242DBD9E19212F6300F6FAB7 /* CoreGraphics.framework */,
+				242DBDA019212F6300F6FAB7 /* UIKit.framework */,
+				242DBDC119212F6300F6FAB7 /* XCTest.framework */,
+				F93DD2D77373461A8DDCEF34 /* libPods-applogger-examples.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		242DBDA219212F6300F6FAB7 /* applogger-examples */ = {
+			isa = PBXGroup;
+			children = (
+				24611FB1192132E60014FEE9 /* Main_iPad.storyboard */,
+				24611FB3192132E60014FEE9 /* Main_iPhone.storyboard */,
+				242DBDE019212FF200F6FAB7 /* Settings.bundle */,
+				242DBDD719212FE800F6FAB7 /* ioBaseViewController.h */,
+				242DBDD819212FE800F6FAB7 /* ioBaseViewController.m */,
+				242DBDD919212FE800F6FAB7 /* ioLoopLogViewController.h */,
+				242DBDDA19212FE800F6FAB7 /* ioLoopLogViewController.m */,
+				242DBDDB19212FE800F6FAB7 /* ioSingleLogViewController.h */,
+				242DBDDC19212FE800F6FAB7 /* ioSingleLogViewController.m */,
+				242DBDAB19212F6300F6FAB7 /* ioAppDelegate.h */,
+				242DBDAC19212F6300F6FAB7 /* ioAppDelegate.m */,
+				242DBDBA19212F6300F6FAB7 /* Images.xcassets */,
+				242DBDA319212F6300F6FAB7 /* Supporting Files */,
+			);
+			path = "applogger-examples";
+			sourceTree = "<group>";
+		};
+		242DBDA319212F6300F6FAB7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				24611FBA1921388F0014FEE9 /* applogger-examples-Info.Continuous.plist */,
+				242DBDA419212F6300F6FAB7 /* applogger-examples-Info.plist */,
+				242DBDA519212F6300F6FAB7 /* InfoPlist.strings */,
+				242DBDA819212F6300F6FAB7 /* main.m */,
+				242DBDAA19212F6300F6FAB7 /* applogger-examples-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		242DBDC719212F6300F6FAB7 /* applogger-examplesTests */ = {
+			isa = PBXGroup;
+			children = (
+				242DBDCD19212F6300F6FAB7 /* applogger_examplesTests.m */,
+				242DBDC819212F6300F6FAB7 /* Supporting Files */,
+			);
+			path = "applogger-examplesTests";
+			sourceTree = "<group>";
+		};
+		242DBDC819212F6300F6FAB7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				242DBDC919212F6300F6FAB7 /* applogger-examplesTests-Info.plist */,
+				242DBDCA19212F6300F6FAB7 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		242DBD9819212F6300F6FAB7 /* applogger-examples */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 242DBDD119212F6300F6FAB7 /* Build configuration list for PBXNativeTarget "applogger-examples" */;
+			buildPhases = (
+				C6DC6B1E9042495D943A04A9 /* Check Pods Manifest.lock */,
+				242DBD9519212F6300F6FAB7 /* Sources */,
+				242DBD9619212F6300F6FAB7 /* Frameworks */,
+				242DBD9719212F6300F6FAB7 /* Resources */,
+				F325AF8AD71B443B8DD97236 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "applogger-examples";
+			productName = "applogger-examples";
+			productReference = 242DBD9919212F6300F6FAB7 /* applogger-examples.app */;
+			productType = "com.apple.product-type.application";
+		};
+		242DBDBF19212F6300F6FAB7 /* applogger-examplesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 242DBDD419212F6300F6FAB7 /* Build configuration list for PBXNativeTarget "applogger-examplesTests" */;
+			buildPhases = (
+				242DBDBC19212F6300F6FAB7 /* Sources */,
+				242DBDBD19212F6300F6FAB7 /* Frameworks */,
+				242DBDBE19212F6300F6FAB7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				242DBDC619212F6300F6FAB7 /* PBXTargetDependency */,
+			);
+			name = "applogger-examplesTests";
+			productName = "applogger-examplesTests";
+			productReference = 242DBDC019212F6300F6FAB7 /* applogger-examplesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		242DBD9119212F6200F6FAB7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = io;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = applogger.io;
+				TargetAttributes = {
+					242DBDBF19212F6300F6FAB7 = {
+						TestTargetID = 242DBD9819212F6300F6FAB7;
+					};
+				};
+			};
+			buildConfigurationList = 242DBD9419212F6200F6FAB7 /* Build configuration list for PBXProject "applogger-examples" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 242DBD9019212F6200F6FAB7;
+			productRefGroup = 242DBD9A19212F6300F6FAB7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				242DBD9819212F6300F6FAB7 /* applogger-examples */,
+				242DBDBF19212F6300F6FAB7 /* applogger-examplesTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		242DBD9719212F6300F6FAB7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				242DBDBB19212F6300F6FAB7 /* Images.xcassets in Resources */,
+				24611FB5192132E60014FEE9 /* Main_iPad.storyboard in Resources */,
+				24611FB6192132E60014FEE9 /* Main_iPhone.storyboard in Resources */,
+				242DBDE119212FF200F6FAB7 /* Settings.bundle in Resources */,
+				242DBDA719212F6300F6FAB7 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		242DBDBE19212F6300F6FAB7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				242DBDCC19212F6300F6FAB7 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C6DC6B1E9042495D943A04A9 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F325AF8AD71B443B8DD97236 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Pods-applogger-examples-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		242DBD9519212F6300F6FAB7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				242DBDDD19212FE800F6FAB7 /* ioBaseViewController.m in Sources */,
+				242DBDDF19212FE800F6FAB7 /* ioSingleLogViewController.m in Sources */,
+				242DBDAD19212F6300F6FAB7 /* ioAppDelegate.m in Sources */,
+				242DBDA919212F6300F6FAB7 /* main.m in Sources */,
+				242DBDDE19212FE800F6FAB7 /* ioLoopLogViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		242DBDBC19212F6300F6FAB7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				242DBDCE19212F6300F6FAB7 /* applogger_examplesTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		242DBDC619212F6300F6FAB7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 242DBD9819212F6300F6FAB7 /* applogger-examples */;
+			targetProxy = 242DBDC519212F6300F6FAB7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		242DBDA519212F6300F6FAB7 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				242DBDA619212F6300F6FAB7 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		242DBDCA19212F6300F6FAB7 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				242DBDCB19212F6300F6FAB7 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		24611FB1192132E60014FEE9 /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				24611FB2192132E60014FEE9 /* Base */,
+			);
+			name = Main_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		24611FB3192132E60014FEE9 /* Main_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				24611FB4192132E60014FEE9 /* Base */,
+			);
+			name = Main_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		242DBDCF19212F6300F6FAB7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "CONFIGURATION_$(CONFIGURATION)";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		242DBDD019212F6300F6FAB7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = "CONFIGURATION_$(CONFIGURATION)";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		242DBDD219212F6300F6FAB7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BB95D0814DD14C918FE9CE04 /* Pods-applogger-examples.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "applogger-examples/applogger-examples-Prefix.pch";
+				INFOPLIST_FILE = "applogger-examples/applogger-examples-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		242DBDD319212F6300F6FAB7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BB95D0814DD14C918FE9CE04 /* Pods-applogger-examples.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "applogger-examples/applogger-examples-Prefix.pch";
+				INFOPLIST_FILE = "applogger-examples/applogger-examples-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		242DBDD519212F6300F6FAB7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/applogger-examples.app/applogger-examples";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "applogger-examples/applogger-examples-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "applogger-examplesTests/applogger-examplesTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		242DBDD619212F6300F6FAB7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/applogger-examples.app/applogger-examples";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "applogger-examples/applogger-examples-Prefix.pch";
+				INFOPLIST_FILE = "applogger-examplesTests/applogger-examplesTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+		24611FB7192137870014FEE9 /* Continuous */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "CONFIGURATION_$(CONFIGURATION)";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Continuous;
+		};
+		24611FB8192137870014FEE9 /* Continuous */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BB95D0814DD14C918FE9CE04 /* Pods-applogger-examples.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "applogger-examples/applogger-examples-Prefix.pch";
+				INFOPLIST_FILE = "applogger-examples/applogger-examples-Info.Continuous.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Continuous;
+		};
+		24611FB9192137870014FEE9 /* Continuous */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/applogger-examples.app/applogger-examples";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "applogger-examples/applogger-examples-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "applogger-examplesTests/applogger-examplesTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Continuous;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		242DBD9419212F6200F6FAB7 /* Build configuration list for PBXProject "applogger-examples" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				242DBDCF19212F6300F6FAB7 /* Debug */,
+				24611FB7192137870014FEE9 /* Continuous */,
+				242DBDD019212F6300F6FAB7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		242DBDD119212F6300F6FAB7 /* Build configuration list for PBXNativeTarget "applogger-examples" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				242DBDD219212F6300F6FAB7 /* Debug */,
+				24611FB8192137870014FEE9 /* Continuous */,
+				242DBDD319212F6300F6FAB7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		242DBDD419212F6300F6FAB7 /* Build configuration list for PBXNativeTarget "applogger-examplesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				242DBDD519212F6300F6FAB7 /* Debug */,
+				24611FB9192137870014FEE9 /* Continuous */,
+				242DBDD619212F6300F6FAB7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 242DBD9119212F6200F6FAB7 /* Project object */;
+}
