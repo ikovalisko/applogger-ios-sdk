@@ -10,5 +10,5 @@
 
 @interface AppLoggerNSLog : NSObject
 
-void logMessage(const char *functionName, NSString *format, ...);
+void logMessage(const char *fileName, const char *functionName, NSString *format, ...);
 @end

@@ -22,7 +22,7 @@ EXTERNAL SOURCES:
     :path: ../apploggerSDK.podspec
 
 SPEC CHECKSUMS:
-  apploggerSDK: 0a1b00cae271896ca847cd5743a17a0d748c1a32
+  apploggerSDK: b06032e1cbd1de6ee1f8c0ab9352dbf7b55d9037
   CocoaAsyncSocket: a3b6de9958961578b36eabb8e921efd95b13d80c
   CocoaLumberjack: 020378ec400d658923bf5887178394f65f052c90
   HockeySDK: 350ef1cf18d2fc9a13801ad077c307cece8c6c64

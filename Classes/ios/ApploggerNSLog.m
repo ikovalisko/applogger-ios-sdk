@@ -9,10 +9,11 @@
 #import "ApploggerNSLog.h"
 #import "ApploggerManager.h"
 #import "ApploggerDDASLLogger.h"
+#include <pthread.h>
 
 @implementation AppLoggerNSLog
 
-void logMessage(const char *functionName, NSString *format, ...)
+void logMessage(const char *fileName, const char *functionName, NSString *format, ...)
 {
     // Type to hold information about variable arguments.
     va_list ap;
@@ -37,18 +38,31 @@ void logMessage(const char *functionName, NSString *format, ...)
     [dateFormatter setDateFormat:@"yyy-MM-dd HH:mm:ss:SSS"];
     NSString *timeStamp = [dateFormatter stringFromDate:[NSDate date]];
     
-    fprintf(stderr, "%s %s %s", [timeStamp UTF8String],
-            [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleExecutable"] UTF8String], [body UTF8String]);
+    NSString *method = @"";
+    // To prevent crashes when logging not working
+    @try {
     
+        fprintf(stderr, "%s %s%s %s", [timeStamp UTF8String],
+                [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleExecutable"] UTF8String],
+                [[NSString stringWithFormat:@"[%ld:%lx]", (long) getpid(), (long) pthread_mach_thread_np(pthread_self())] UTF8String],
+                [body UTF8String]);
+
+        method = [[[[[[NSString stringWithUTF8String:functionName]
+                          substringFromIndex:[[NSString stringWithUTF8String:functionName] rangeOfString:@" "].location+1]
+                         stringByReplacingOccurrencesOfString:@"[" withString:@""]
+                        stringByReplacingOccurrencesOfString:@"-" withString:@""]
+                       stringByReplacingOccurrencesOfString:@"]" withString:@""]
+                      lastPathComponent];
+    }
+    @catch (NSException *exception) {
+        
+    }
     
     // Log to applogger in the www
-    //dispatch_sync(dispatch_get_main_queue(), ^{
-        AppLoggerLogMessage *message = [[AppLoggerLogMessage alloc] init];
-        message.message = body;
-        message.methodName = [NSString stringWithFormat:@"%s", functionName];
-        [[ApploggerManager sharedApploggerManager] addLogMessage:message];
-        
-    //});
+    AppLoggerLogMessage *message = [[AppLoggerLogMessage alloc] init];
+    message.message = body;
+    message.methodName = [NSString stringWithFormat:@"%s", [method UTF8String]];
+    [[ApploggerManager sharedApploggerManager] addLogMessage:message];
     
 }
 @end

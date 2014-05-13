@@ -26,7 +26,6 @@ Pod::Spec.new do |s|
   s.osx.frameworks     = %w{CoreServices Security}
   s.osx.compiler_flags = '-Wno-format'
   s.libraries          = "icucore"
-  s.framework    = 'AppKit'
   
   s.source_files = 'Classes/iOS/*.{h,m}', "socket.io/*.{h,m}", "socket.io/submodules/socket-rocket/SocketRocket/*.{h,m,c}"
 

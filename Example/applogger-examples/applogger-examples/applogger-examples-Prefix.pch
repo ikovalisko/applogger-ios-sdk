@@ -19,6 +19,4 @@
 
 static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
-
-//#define NSLog(args...) logMessage(__PRETTY_FUNCTION__,args);
-#define NSLog(args...) logMessage(__PRETTY_FUNCTION__,args);
+#define NSLog(args...) logMessage(__FILE__, __PRETTY_FUNCTION__,args);
