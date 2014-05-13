@@ -8,6 +8,7 @@
 
 #import "ApploggerNSLog.h"
 #import "ApploggerManager.h"
+#import "ApploggerDDASLLogger.h"
 
 @implementation AppLoggerNSLog
 
@@ -32,11 +33,13 @@ void logMessage(const char *functionName, NSString *format, ...)
     // End using variable argument list.
     va_end (ap);
     
-    // create the timestamp string
-    NSString* timeStamp = [NSDateFormatter localizedStringFromDate:[NSDate date] dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterMediumStyle];
-
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyy-MM-dd HH:mm:ss:SSS"];
+    NSString *timeStamp = [dateFormatter stringFromDate:[NSDate date]];
+    
     fprintf(stderr, "%s %s %s", [timeStamp UTF8String],
-            functionName, [body UTF8String]);
+            [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleExecutable"] UTF8String], [body UTF8String]);
+    
     
     // Log to applogger in the www
     //dispatch_sync(dispatch_get_main_queue(), ^{
@@ -46,6 +49,6 @@ void logMessage(const char *functionName, NSString *format, ...)
         [[ApploggerManager sharedApploggerManager] addLogMessage:message];
         
     //});
-
+    
 }
 @end
