@@ -20,7 +20,9 @@ This part is used to connect the right Application on applogger.io with your mob
 ### Start the applogger
 To start the applogger use the startApploggerManagerWithCompletion method
 ```ruby
-[[ApploggerManager sharedApploggerManager] startApploggerManagerWithCompletion:^(BOOL successfull, NSError *error){
+[[ApploggerManager sharedApploggerManager] 
+				   startApploggerManagerWithCompletion:^(BOOL successfull, 
+														 NSError *error){
 ```
 ### Register your device
 In the completion block and if the start was successful you can use the getAssignDeviceLink 
@@ -28,9 +30,11 @@ method to receive the url for register your device. This must be done only at th
 time you are using the device with applogger SDK
 ```ruby     
 if (successfull) {
-    NSString *deviceRegisterURLString = [[ApploggerManager sharedApploggerManager] getAssignDeviceLink]];
+    NSString *deviceRegisterURLString = [[ApploggerManager sharedApploggerManager] 
+    														 getAssignDeviceLink]];
 }else{
-    [self showMessage:[NSString stringWithFormat:@"Applogger connection failed : %@", error.localizedDescription]];
+    [self showMessage:[NSString stringWithFormat:@"Applogger connection failed : %@", 
+    													error.localizedDescription]];
 }
 ```
 ### Configure your logging framework to use applogger.io
@@ -66,9 +70,10 @@ it simply add the following line to your Podfile:
 
 ## Author
 
-Dirk Eisenberg and Mirko Olsiewicz
+- Dirk Eisenberg
+- Mirko Olsiewicz
 
 ## License
 
-apploggerSDK is available under the MIT license. See the LICENSE file for more info.
+apploggerSDK is available under the MIT license. See the [LICENSE file](https://github.com/applogger/applogger-ios-sdk/blob/master/LICENSE) for more info.
 
