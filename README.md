@@ -10,8 +10,10 @@ In the ioAppDelegate.m you will find the following code in the method
 
 application:didfinishLaunchingWithOptions:
 
+```ruby
 [[ApploggerManager sharedApploggerManager] setApplicationIdentifier:@"<AppIdentifier>"
                                                               AndSecret:@"<AppSecret>"];
+```
 
 This part is used to connect the right Application on applogger.io with your mobile device
 
@@ -22,17 +24,22 @@ At least you must decide which logging client you want to use
 To use Cocoalumberjack can add the shared Instance of the applogger logger to the 
 cocoalumberjack logger with the following code
 
+```ruby
 [DDLog addLogger:[ApploggerDDASLLogger sharedInstance]];
+```
 
 To use NSLog you can add a preprocessor macro to you .pch file with the following syntax
 
+```ruby
 #import "DDlog.h"
 #define NSLog(args...) logMessage(__FILE__, __PRETTY_FUNCTION__,args);
+```
 
 And to use this method in you class you have to add
 
+```ruby
 #import "ApploggerNSLog.h"
-
+```
 
 ## Requirements
 
