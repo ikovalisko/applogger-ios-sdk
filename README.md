@@ -1,6 +1,7 @@
-applogger-ios-sdk
+<p>
+<img src="applogger.png" title="Applogger.io" float=left>applogger-ios-sdk
 =================
-
+</p>
 The official iOS SDK for the applogger.io service (Releases are in the master branch) https://applogger.io
 
 [![Version](http://cocoapod-badges.herokuapp.com/v/apploggerSDK/badge.png)](http://cocoadocs.org/docsets/apploggerSDK)
