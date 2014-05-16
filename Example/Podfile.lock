@@ -1,5 +1,5 @@
 PODS:
-  - apploggerSDK (0.1.0):
+  - apploggerSDK (0.3.2):
     - CocoaAsyncSocket (~> 7.3.4)
     - CocoaLumberjack
   - CocoaAsyncSocket (7.3.5)
@@ -22,7 +22,7 @@ EXTERNAL SOURCES:
     :path: ../apploggerSDK.podspec
 
 SPEC CHECKSUMS:
-  apploggerSDK: b06032e1cbd1de6ee1f8c0ab9352dbf7b55d9037
+  apploggerSDK: a2f2e621273e8edd675b6c9b5ff9b4a9bfb93c74
   CocoaAsyncSocket: a3b6de9958961578b36eabb8e921efd95b13d80c
   CocoaLumberjack: 020378ec400d658923bf5887178394f65f052c90
   HockeySDK: 350ef1cf18d2fc9a13801ad077c307cece8c6c64
