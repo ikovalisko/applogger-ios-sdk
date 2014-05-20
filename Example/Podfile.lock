@@ -23,9 +23,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   apploggerSDK: a2f2e621273e8edd675b6c9b5ff9b4a9bfb93c74
-  CocoaAsyncSocket: a3b6de9958961578b36eabb8e921efd95b13d80c
-  CocoaLumberjack: 020378ec400d658923bf5887178394f65f052c90
-  HockeySDK: 350ef1cf18d2fc9a13801ad077c307cece8c6c64
-  MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
+  CocoaAsyncSocket: 45bdbbc1c0a5ed0640ff4c42af325ba43a2f099a
+  CocoaLumberjack: 9d198d6e19909b3b113a38c5f06f7bb8eedd0427
+  HockeySDK: f9af97c2f5df4eb6ca6d2a9c408f2ff498edd608
+  MBProgressHUD: c356980b0cd097f19acec959b49dca5eb8ec31be
 
 COCOAPODS: 0.32.1
