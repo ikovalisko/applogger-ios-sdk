@@ -13,6 +13,7 @@
 
 @interface AppLoggerWebSocketConnection() {
     AppLoggerWebSockerConnectionOpenHandler _webSocketOpenCompletionHandler;
+    NSArray *listeningUsers;
 }
 @property (nonatomic, strong) SocketIO* webSocket;
 @end
@@ -63,7 +64,7 @@
     }
 }
 
--(BOOL)canSendLog{
+-(BOOL)hasValidConnection{
     
     @synchronized(self)
     {
@@ -73,6 +74,18 @@
             return YES;
         else
             return NO;
+    }
+    
+}
+
+-(BOOL)hasValidListener{
+    
+    @synchronized(self)
+    {
+        if (listeningUsers && [listeningUsers count] > 0)
+            return YES;
+        
+        return NO;
     }
     
 }
@@ -106,7 +119,26 @@
     {
         if ([packet.name compare:@"connection.established"] == NSOrderedSame && _webSocketOpenCompletionHandler)
             _webSocketOpenCompletionHandler(self, nil);
+        // User listening event
+        else if ([packet.name compare:@"harvester.users"] == NSOrderedSame){
+            //Check whether a user is listening or not.
+            
+            // Savety check to be sure that the data exists
+            if ([packet.args isKindOfClass:[NSArray class]] && [packet.args count] > 0) {
+                // Data example : <__NSCFArray 0x947e760>({users =     ();})
+                NSDictionary *usersDict = [packet.args objectAtIndex:0];
+                
+                // set listening users if exists
+                if ([[usersDict allKeys] containsObject:@"users"]) {
+                    listeningUsers = [usersDict objectForKey:@"users"];
+                }
+                
+            }
+
+        }
+
     }
+    
 }
 
 - (void) socketIO:(SocketIO *)socket onError:(NSError *)error {

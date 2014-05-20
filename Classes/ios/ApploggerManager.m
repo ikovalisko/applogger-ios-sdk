@@ -150,7 +150,7 @@
     if (_loggingIsStarted){
         
         @try {
-            if (![_webSocketConnection canSendLog]){
+            if (![_webSocketConnection hasValidConnection]){
                 
                 if (![_logQueue isSuspended]) {
                     [_logQueue setSuspended:YES];
@@ -162,15 +162,21 @@
             }
             
             @try {
-                [_logQueue addOperationWithBlock:^{
-                        @try {
-                            // send log when connection is available
-                            if (_webSocketConnection)
-                                [_webSocketConnection log:message];
-                        }
-                        @catch (NSException *exception) {
-                        }
-                }];
+                
+                if ([_webSocketConnection hasValidListener]) {
+                    
+                    [_logQueue addOperationWithBlock:^{
+                            @try {
+                                // send log when connection is available
+                                if (_webSocketConnection)
+                                    [_webSocketConnection log:message];
+                            }
+                            @catch (NSException *exception) {
+                            }
+                    }];
+                    
+                }
+                
             }
             @catch (NSException *exception) {
             }

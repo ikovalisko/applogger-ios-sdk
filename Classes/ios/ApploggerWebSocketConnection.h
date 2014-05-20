@@ -25,6 +25,7 @@ typedef void (^AppLoggerWebSockerConnectionOpenHandler)(AppLoggerWebSocketConnec
 
 - (void) log:(AppLoggerLogMessage*)message;
 
-- (BOOL) canSendLog;
+- (BOOL) hasValidConnection;
 
+- (BOOL) hasValidListener;
 @end
