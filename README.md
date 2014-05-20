@@ -67,7 +67,7 @@ apploggerSDK is available through [CocoaPods](http://cocoapods.org), to install
 it simply add the following line to your Podfile:
 
 ```
-    pod "apploggerSDK", :git => 'https://github.com/applogger/applogger-ios-sdk.git'
+pod "apploggerSDK"
 ```
 
 ## Author
