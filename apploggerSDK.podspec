@@ -3,6 +3,7 @@ Pod::Spec.new do |s|
   s.version          = "0.3.2"
   s.summary          = "Log your app to the web"
   s.homepage         = "http://applogger.io"
+  s.documentation_url= 'https://github.com/applogger/applogger-ios-sdk'
   s.license          = 'MIT'
   s.author           = { "io" => "info@applogger.io" }
 
