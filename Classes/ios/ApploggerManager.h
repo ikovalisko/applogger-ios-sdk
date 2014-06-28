@@ -10,6 +10,9 @@
 #import "AsyncSocket.h"
 #import "ApploggerLogMessage.h"
 #import "ApploggerDDASLLogger.h"
+#import "ApploggerNSLogger.h"
+
+@class GCDAsyncSocket;
 
 typedef void (^ALManagerInitiateCompletionHandler)(BOOL successfull, NSError *error);
 typedef void (^ALSocketConnectionCompletionHandler)(BOOL successfull, NSError *error);
@@ -59,4 +62,9 @@ typedef void (^ALSocketConnectionCompletionHandler)(BOOL successfull, NSError *e
  * Temporarily Method to get assign link from app
  */
 -(NSString*)getAssignDeviceLink;
+
+/*
+ * Add NSLogger connection for Applogger
+ */
+-(void)registerNSLoggerConnectionWithDelegate:(id<ApploggerNSLoggerDelegate>) delegate;
 @end

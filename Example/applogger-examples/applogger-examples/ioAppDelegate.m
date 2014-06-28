@@ -66,6 +66,9 @@
     
 #endif
     
+    //Add NSLogger
+    [[ApploggerManager sharedApploggerManager] registerNSLoggerConnectionWithDelegate:nil];
+    
     // Override cocoaLumberJack logger
     [DDLog addLogger:[ApploggerDDASLLogger sharedInstance]];
     [DDLog addLogger:[DDASLLogger sharedInstance]];

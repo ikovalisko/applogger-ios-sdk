@@ -9,6 +9,7 @@ target "applogger-examples" do
 	pod 'MBProgressHUD', '>= 0.8'
 	pod 'HockeySDK', '>=3.5.4'
 	pod 'CocoaLumberjack'
+    pod 'NSLogger', '>=1.2'
 end
 
 target "applogger-examplesTests" do

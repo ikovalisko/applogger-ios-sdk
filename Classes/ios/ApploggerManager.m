@@ -26,7 +26,7 @@
     BOOL _isCurrentlyEstablishingAConnection;
     
     NSOperationQueue *_logQueue;
-    
+    ApploggerNSLogger *_nSLoggerInstance;
 }
 
 @property (nonatomic, strong) AppLoggerWebSocketConnection* webSocketConnection;
@@ -96,7 +96,7 @@
 }
 
 -(void)startApploggerManagerWithCompletion:(ALManagerInitiateCompletionHandler)completion{
-    
+        
     // only connect if not already started
     if (!_loggingIsStarted) {
         
@@ -264,5 +264,12 @@
     });
     
 }
+
+#pragma mark - NSLogger
+-(void)registerNSLoggerConnectionWithDelegate:(id<ApploggerNSLoggerDelegate>) delegate{
+    _nSLoggerInstance = [[ApploggerNSLogger alloc] initWithDelegate:delegate];
+    [_nSLoggerInstance registerServer];
+}
+
 
 @end

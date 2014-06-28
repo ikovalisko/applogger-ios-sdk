@@ -15,8 +15,10 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     #import "ApploggerNSLog.h"
+    #import "NSLogger.h"
 #endif
 
 static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
-#define NSLog(args...) logMessage(__FILE__, __PRETTY_FUNCTION__,args);
+#warning Enable this to use NSLog override for Applogger
+//#define NSLog(args...) logMessage(__FILE__, __PRETTY_FUNCTION__,args);
