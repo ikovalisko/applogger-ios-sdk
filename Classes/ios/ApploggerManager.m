@@ -139,11 +139,74 @@
     
 }
 
+-(void)checkInDeviceWithCompletion:(ALManagerRegisterDeviceCompletionHandler)completion{
+    
+    // only check in device when application id is available
+    if (_applicationIdentifier) {
+
+        dispatch_async(dispatch_queue_create([_initializequeueName cStringUsingEncoding:NSASCIIStringEncoding], NULL), ^{
+            
+            // At first we just announce the device as self. At this point the system knows about the device but nobody can do anything with that. This call
+            // is also used to update meta information about the device.
+            AppLoggerManagementService* mgntService = [AppLoggerManagementService service:_applicationIdentifier withSecret:_applicationSecret andServiceUri:_apiURL];
+            [mgntService announceDevice:^(NSError *error) {
+                
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    
+                    if (error != nil) {
+                        
+                            if (completion) {
+                                completion(NO, [NSError errorWithDomain:@"AppLoggerManagerError" code:-1 userInfo:@{@"Message": [NSString stringWithFormat:@"Couldn't register device. (%@)", error.localizedDescription]}]);
+                            }
+                        
+                    }else{
+                        
+                        if (completion) {
+                            completion(YES, nil);
+                        }
+
+                    }
+                    
+                });
+                
+            }];
+            
+        });
+        
+    }else{
+        // Create error that app identifier not set and call completion
+        NSError *error = [NSError errorWithDomain:@"AppLoggerManagerError" code:-1 userInfo:@{@"Message": @"ApplicationIdentifier is not set"}];
+        
+        if (completion)
+            completion(NO, error);
+    }
+    
+}
+
+-(void)startSessionWithCompletion:(ALManagerSessionCompletionHandler)completion{
+    
+    [self startApploggerManagerWithCompletion:^(BOOL successfull, NSError *error) {
+        
+        if (completion)
+            completion(successfull, error);
+        
+    }];
+    
+}
+
+-(void)stopSessionWithCompletion:(ALManagerSessionCompletionHandler)completion{
+    [self stopApploggerManager];
+    
+    if (completion)
+        completion(YES, nil);
+}
+
 -(void)stopApploggerManager{
     _loggingIsStarted = NO;
     [_clientSocket disconnect];
-
+    
 }
+
 
 -(void)addLogMessage:(AppLoggerLogMessage*)message{
 
@@ -194,74 +257,75 @@
     
     _isCurrentlyEstablishingAConnection = YES;
     
-    dispatch_async(dispatch_queue_create([_initializequeueName cStringUsingEncoding:NSASCIIStringEncoding], NULL), ^{
-        
-        // At first we just announce the device as self. At this point the system knows about the device but nobody can do anything with that. This call
-        // is also used to update meta information about the device.
-        AppLoggerManagementService* mgntService = [AppLoggerManagementService service:_applicationIdentifier withSecret:_applicationSecret andServiceUri:_apiURL];
-        [mgntService announceDevice:^(NSError *error) {
+    // check in device
+    [self checkInDeviceWithCompletion:^(BOOL successfull, NSError *error) {
+    
+        if (successfull) {
             
-            if (error != nil) {
-                dispatch_sync(dispatch_get_main_queue(), ^{
-                    
-                    if (completion) {
-                        completion(NO, [NSError errorWithDomain:@"AppLoggerManagerError" code:-1 userInfo:@{@"Message": @"Couldn't register device"}]);
-                    }
-                    return;
-                });
-
-            }
-            
-            [mgntService requestDataStreamConfiguration:^(AppLoggerLogStreamConfiguration *configuration, NSError *error) {
+            dispatch_async(dispatch_queue_create([_initializequeueName cStringUsingEncoding:NSASCIIStringEncoding], NULL), ^{
                 
-                if (error != nil)
-                {
-                    dispatch_sync(dispatch_get_main_queue(), ^{
-
-                        if (completion) {
-                            completion(NO, [NSError errorWithDomain:@"AppLoggerManagerError" code:-1 userInfo:@{@"Message": @"Couldn't get stream information"}]);
-                        }
-                        return;
-
-                    });
-                    
-                }
+                // createa applogger management service
+                AppLoggerManagementService* mgntService = [AppLoggerManagementService service:_applicationIdentifier withSecret:_applicationSecret andServiceUri:_apiURL];
                 
-                // call completion and create socket connection in main thread
-                dispatch_sync(dispatch_get_main_queue(), ^{
+                // request a datastream from applogger server
+                [mgntService requestDataStreamConfiguration:^(AppLoggerLogStreamConfiguration *configuration, NSError *error) {
                     
-                    @try
+                    if (error != nil)
                     {
-                        _webSocketConnection = [AppLoggerWebSocketConnection connect:configuration.serverAddress withPort:[configuration.serverPort intValue] andProtocol:configuration.networkProtocol onApp:_applicationIdentifier withSecret:_applicationSecret forDevice:[mgntService deviceIdentifier] completion:^(AppLoggerWebSocketConnection *connection, NSError *error) {
+                        dispatch_sync(dispatch_get_main_queue(), ^{
+
+                            if (completion) {
+                                completion(NO, [NSError errorWithDomain:@"AppLoggerManagerError" code:-1 userInfo:@{@"Message": [NSString stringWithFormat:@"Couldn't get stream information. (%@)", error.localizedDescription]}]);
+                            }
+                            return;
+
+                        });
+                        
+                    }
+                    
+                    // call completion and create socket connection in main thread
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        
+                        @try
+                        {
+                            _webSocketConnection = [AppLoggerWebSocketConnection connect:configuration.serverAddress withPort:[configuration.serverPort intValue] andProtocol:configuration.networkProtocol onApp:_applicationIdentifier withSecret:_applicationSecret forDevice:[mgntService deviceIdentifier] completion:^(AppLoggerWebSocketConnection *connection, NSError *error) {
+                                
+                                if (error)
+                                {
+                                    [_webSocketConnection disconnect];
+                                    _webSocketConnection = nil;
+                                }
+
+                            }];
                             
-                            if (error)
-                            {
-                                [_webSocketConnection disconnect];
-                                _webSocketConnection = nil;
+                        }
+                        @catch (NSException *exception) {
+                            neterror = [NSError errorWithDomain:@"exception during connection" code:-1 userInfo:@{@"Message": [NSString stringWithFormat:@"Exception durin connection. (%@)", exception]}];
+                        }
+                        @finally
+                        {
+                            
+                            if (completion) {
+                                completion((neterror ? NO : YES), neterror);
                             }
 
-                        }];
-                        
-                    }
-                    @catch (NSException *exception) {
-                        neterror = [NSError errorWithDomain:@"exception during connection" code:-1 userInfo:nil];
-                    }
-                    @finally
-                    {
-                        
-                        if (completion) {
-                            completion((neterror ? NO : YES), neterror);
                         }
-
-                    }
-                        
-                });
+                            
+                    });
+                    
+                }];
                 
-            }];
+            });
             
-        }];
+        }else{
+ 
+            if (completion)
+                completion(NO, error);
+            
+            return;
+        }
         
-    });
+    }];
     
 }
 

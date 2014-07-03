@@ -15,6 +15,8 @@
 @class GCDAsyncSocket;
 
 typedef void (^ALManagerInitiateCompletionHandler)(BOOL successfull, NSError *error);
+typedef void (^ALManagerRegisterDeviceCompletionHandler)(BOOL successfull, NSError *error);
+typedef void (^ALManagerSessionCompletionHandler)(BOOL successfull, NSError *error);
 typedef void (^ALSocketConnectionCompletionHandler)(BOOL successfull, NSError *error);
 
 @interface ApploggerManager : NSObject
@@ -42,18 +44,6 @@ typedef void (^ALSocketConnectionCompletionHandler)(BOOL successfull, NSError *e
 -(void) setApplicationIdentifier:(NSString*)identifier AndSecret:(NSString*)secret;
 
 /*
- * start the Applogger
- * create stream and connect to server
- */
--(void)startApploggerManagerWithCompletion:(ALManagerInitiateCompletionHandler)completion;
-
-/*
- * stop the Applogger
- * disconnect from server
- */
--(void)stopApploggerManager;
-
-/*
  * add MEssage to Log stream on server
  */
 -(void)addLogMessage:(AppLoggerLogMessage*)message;
@@ -64,7 +54,35 @@ typedef void (^ALSocketConnectionCompletionHandler)(BOOL successfull, NSError *e
 -(NSString*)getAssignDeviceLink;
 
 /*
- * Add NSLogger connection for Applogger
+ * Add NSLogger connection for applogger
  */
 -(void)registerNSLoggerConnectionWithDelegate:(id<ApploggerNSLoggerDelegate>) delegate;
+
+/*
+ * start the Applogger
+ * create stream and connect to server
+ */
+-(void)startApploggerManagerWithCompletion:(ALManagerInitiateCompletionHandler)completion;
+
+/*
+ * to check in the device to apploggerr
+ */
+-(void)checkInDeviceWithCompletion:(ALManagerRegisterDeviceCompletionHandler)completion;
+
+/*
+ * open socket stream session with applogger
+ */
+-(void)startSessionWithCompletion:(ALManagerSessionCompletionHandler)completion;
+
+/*
+ * close socket stream session with applogger
+ */
+-(void)stopSessionWithCompletion:(ALManagerSessionCompletionHandler)completion;
+
+/*
+ * stop the Applogger
+ * disconnect from server
+ */
+-(void)stopApploggerManager;
+
 @end

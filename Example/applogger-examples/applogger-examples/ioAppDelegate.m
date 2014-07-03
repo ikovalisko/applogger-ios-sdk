@@ -81,13 +81,14 @@
     [progressHUD setLabelFont:[UIFont systemFontOfSize:15.0]];
     
     // Start the Applogger
-    [[ApploggerManager sharedApploggerManager] startApploggerManagerWithCompletion:^(BOOL successfull, NSError *error){
+    //[[ApploggerManager sharedApploggerManager] startApploggerManagerWithCompletion:^(BOOL successfull, NSError *error){
+    [[ApploggerManager sharedApploggerManager] checkInDeviceWithCompletion:^(BOOL successfull, NSError *error) {
         
         if (successfull) {
-            [self showMessage:@"Applogger connection established"];
+            [self showMessage:@"Device registered"];
             [[(ioStartStopViewController*)[[self.window.rootViewController childViewControllers] objectAtIndex:0] registerLinkTextView] setText:[[ApploggerManager sharedApploggerManager] getAssignDeviceLink]];
         }else{
-            [self showMessage:[NSString stringWithFormat:@"Applogger connection failed : %@", error.localizedDescription]];
+            [self showMessage:[NSString stringWithFormat:@"Applogger register device failed : %@", error.localizedDescription]];
         }
         
     }];
