@@ -96,46 +96,14 @@
 }
 
 -(void)startApploggerManagerWithCompletion:(ALManagerInitiateCompletionHandler)completion{
+    
+    [self startSessionWithCompletion:^(BOOL successfull, NSError *error) {
         
-    // only connect if not already started
-    if (!_loggingIsStarted) {
+        if (completion)
+            completion(successfull, error);
         
-        if (_applicationIdentifier) {
-            
-            _loggingIsStarted = YES;
+    }];
 
-            NSError __block * error = nil;
-
-            // check whether the client socket is alread connected
-            if (![_clientSocket isConnected])
-            {
-
-                [self connectWebSocketWithCompletion:^(BOOL successfull, NSError *error){
-
-                    if (completion)
-                        completion((error ? NO : YES), error);
-        
-                }];
-                
-                return;
-            }else{
-                // Create error that could not get stream information
-                error = [NSError errorWithDomain:@"AppLoggerManagerError" code:-1 userInfo:@{@"Message": @"Couldn't establish a connection to server"}];
-
-                // log connection is established
-            }
-            
-            if (completion)
-                completion(NO, error);
-
-        }else{
-            // Create error that app identifier not set and call completion
-            NSError *error = [NSError errorWithDomain:@"AppLoggerManagerError" code:-1 userInfo:@{@"Message": @"ApplicationIdentifier is not set"}];
-            if (completion)
-               completion(NO, error);
-        }
-        
-    }
     
 }
 
@@ -185,12 +153,45 @@
 
 -(void)startSessionWithCompletion:(ALManagerSessionCompletionHandler)completion{
     
-    [self startApploggerManagerWithCompletion:^(BOOL successfull, NSError *error) {
+    // only connect if not already started
+    if (!_loggingIsStarted) {
         
-        if (completion)
-            completion(successfull, error);
+        if (_applicationIdentifier) {
+            
+            _loggingIsStarted = YES;
+            
+            NSError __block * error = nil;
+            
+            // check whether the client socket is alread connected
+            if (![_clientSocket isConnected])
+            {
+                
+                [self connectWebSocketWithCompletion:^(BOOL successfull, NSError *error){
+                    
+                    if (completion)
+                        completion((error ? NO : YES), error);
+                    
+                }];
+                
+                return;
+            }else{
+                // Create error that could not get stream information
+                error = [NSError errorWithDomain:@"AppLoggerManagerError" code:-1 userInfo:@{@"Message": @"Couldn't establish a connection to server"}];
+                
+                // log connection is established
+            }
+            
+            if (completion)
+                completion(NO, error);
+            
+        }else{
+            // Create error that app identifier not set and call completion
+            NSError *error = [NSError errorWithDomain:@"AppLoggerManagerError" code:-1 userInfo:@{@"Message": @"ApplicationIdentifier is not set"}];
+            if (completion)
+                completion(NO, error);
+        }
         
-    }];
+    }
     
 }
 
