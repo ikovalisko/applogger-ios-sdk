@@ -18,11 +18,12 @@ First of all set the AppIdentifier and AppSecret of your application
 This part is used to connect the right Application on applogger.io with your mobile device
 
 ### Start the applogger
-To start the applogger use the startApploggerManagerWithCompletion method
+To start the applogger you have to do two steps
+
+First you must check in your device with checkInDevice method
 ```ruby
-[[ApploggerManager sharedApploggerManager] 
-				   startApploggerManagerWithCompletion:^(BOOL successfull, 
-														 NSError *error){
+[ApploggerManager sharedApploggerManager] 
+				checkInDeviceWithCompletion:^(BOOL successfull, NSError *error){
 ```
 ### Register your device
 In the completion block and if the start was successful you can use the getAssignDeviceLink 
@@ -37,6 +38,19 @@ if (successfull) {
     													error.localizedDescription]];
 }
 ```
+### Start session with applogger.io
+To send the log to applogger.io you must start a session with the method
+```ruby 
+[[ApploggerManager sharedApploggerManager] 
+				startSessionWithCompletion:^(BOOL successfull, NSError *error){
+```		
+if you would no longer send logs you can close your session with the method
+```ruby 
+[[ApploggerManager sharedApploggerManager] 
+				stopSessionWithCompletion:^(BOOL successfull, NSError *error){
+```		
+if you have started the session and nobody watch your app on applogger.io we send no
+log statements. That means you have no data stream if nobody watch on applogger.io
 ### Configure your logging framework to use applogger.io
 With **Cocoalumberjack** you can add the shared Instance of the applogger logger to the 
 cocoalumberjack logger with the following code
@@ -53,6 +67,13 @@ And to use this method in you class you have to add
 ```ruby
 #import "ApploggerNSLog.h"
 ```
+With **NSLogger** you can register a NSLogger connection with the method
+```ruby
+[[ApploggerManager sharedApploggerManager] 
+					registerNSLoggerConnectionWithDelegate:<Delegate>];
+```
+If ou set a delegate you will be informed about connection established and 
+connection failed.
 
 ***Now you are able to log to applogger.io***
 
