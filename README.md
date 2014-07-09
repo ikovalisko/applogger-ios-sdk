@@ -42,12 +42,12 @@ if (successfull) {
 To send the log to applogger.io you must start a session with the method
 ```ruby 
 [[ApploggerManager sharedApploggerManager] 
-				stopSessionWithCompletion:^(BOOL successfull, NSError *error){
+				startSessionWithCompletion:^(BOOL successfull, NSError *error){
 ```		
 if you would no longer send logs you can close your session with the method
 ```ruby 
 [[ApploggerManager sharedApploggerManager] 
-				startSessionWithCompletion:^(BOOL successfull, NSError *error){
+				stopSessionWithCompletion:^(BOOL successfull, NSError *error){
 ```		
 if you have started the session and nobody watch your app on applogger.io we send no
 log statements. That means you have no data stream if nobody watch on applogger.io
@@ -74,6 +74,7 @@ With **NSLogger** you can register a NSLogger connection with the method
 ```
 If ou set a delegate you will be informed about connection established and 
 connection failed.
+
 ***Now you are able to log to applogger.io***
 
 
