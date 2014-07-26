@@ -27,6 +27,7 @@
     
     NSOperationQueue *_logQueue;
     
+    NSString* _deviceName;
 }
 
 @property (nonatomic, strong) AppLoggerWebSocketConnection* webSocketConnection;
@@ -87,6 +88,10 @@
 -(void)setApplicationIdentifier:(NSString *)identifier AndSecret:(NSString*) secret{
     _applicationIdentifier = identifier;
     _applicationSecret = secret;
+}
+
+-(void) setDeviceName:(NSString*)name {
+    _deviceName = name;
 }
 
 -(NSString*)getAssignDeviceLink{
@@ -199,7 +204,7 @@
         // At first we just announce the device as self. At this point the system knows about the device but nobody can do anything with that. This call
         // is also used to update meta information about the device.
         AppLoggerManagementService* mgntService = [AppLoggerManagementService service:_applicationIdentifier withSecret:_applicationSecret andServiceUri:_apiURL];
-        [mgntService announceDevice:^(NSError *error) {
+        [mgntService announceDeviceWithName:_deviceName completion:^(NSError *error) {
             
             if (error != nil) {
                 dispatch_sync(dispatch_get_main_queue(), ^{

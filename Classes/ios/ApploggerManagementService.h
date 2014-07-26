@@ -18,7 +18,7 @@ typedef void (^ALMSRequestDataStreamConfigurationCompletionHandler)(AppLoggerLog
 
 - (NSString*) deviceIdentifier;
 
-- (void) announceDevice:(ALMSAnnounceDeviceCompletionHandler)completion;
+- (void) announceDeviceWithName:(NSString*)name completion:(ALMSAnnounceDeviceCompletionHandler)completion;
 
 - (void) requestDataStreamConfiguration:(ALMSRequestDataStreamConfigurationCompletionHandler)completion;
 

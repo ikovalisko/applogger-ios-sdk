@@ -42,7 +42,12 @@
     return [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
 }
 
-- (void) announceDevice:(ALMSAnnounceDeviceCompletionHandler)completion {
+- (void) announceDeviceWithName:(NSString*)name completion:(ALMSAnnounceDeviceCompletionHandler)completion {
+    
+    // build the displayname of the device
+    NSString* deviceName = name;
+    if (!deviceName)
+        deviceName = [[UIDevice currentDevice] name];
     
     // Generate the announcement url
     NSURL* announceDeviceUrl = [self createDeviceRequestUrl:nil];
@@ -59,7 +64,7 @@
     
     // add information for creating a queue for the current device with date prefix
     NSDictionary* postData = @{ @"device" : @{ @"identifier"    : [self deviceIdentifier],
-                                               @"name"          : [[UIDevice currentDevice] name],
+                                               @"name"          : deviceName,
                                                @"hwtype"        : [ioBeaverHelper getPlatform],
                                                @"ostype"        : [[UIDevice currentDevice] systemVersion] } };
         

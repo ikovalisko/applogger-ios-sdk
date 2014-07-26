@@ -14,6 +14,8 @@
 typedef void (^ALManagerInitiateCompletionHandler)(BOOL successfull, NSError *error);
 typedef void (^ALSocketConnectionCompletionHandler)(BOOL successfull, NSError *error);
 
+typedef void (^ALSupportSessionRequestCompletionHandler)(NSError *error);
+
 @interface ApploggerManager : NSObject
 
 /*
@@ -39,6 +41,11 @@ typedef void (^ALSocketConnectionCompletionHandler)(BOOL successfull, NSError *e
 -(void) setApplicationIdentifier:(NSString*)identifier AndSecret:(NSString*)secret;
 
 /*
+ * allows to override the devicename
+ */
+-(void) setDeviceName:(NSString*)name;
+
+/*
  * start the Applogger
  * create stream and connect to server
  */
@@ -59,4 +66,11 @@ typedef void (^ALSocketConnectionCompletionHandler)(BOOL successfull, NSError *e
  * Temporarily Method to get assign link from app
  */
 -(NSString*)getAssignDeviceLink;
+
+/*
+ * Call this method to request a support session. The support session has the state pending as long the device
+ * is not disconnecting from the service.
+ */
+- (void)requestSupportSession:(ALSupportSessionRequestCompletionHandler)completion;
+
 @end
