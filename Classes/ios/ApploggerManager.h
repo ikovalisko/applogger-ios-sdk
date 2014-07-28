@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "AsyncSocket.h"
+#import "ApploggerWatcherDelegate.h"
 #import "ApploggerLogMessage.h"
 #import "ApploggerDDASLLogger.h"
 
@@ -16,7 +17,12 @@ typedef void (^ALSocketConnectionCompletionHandler)(BOOL successfull, NSError *e
 
 typedef void (^ALSupportSessionRequestCompletionHandler)(NSError *error);
 
-@interface ApploggerManager : NSObject
+@interface ApploggerManager : NSObject<ApploggerWatcherDelegate>
+
+/*
+ * Use this delegate to become notified when a new user is watching the stream
+ */
+@property (nonatomic, strong) id<ApploggerWatcherDelegate> watcherDelegate;
 
 /*
  * Indicator whether applogger is started

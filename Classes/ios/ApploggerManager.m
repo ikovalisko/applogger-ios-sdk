@@ -237,7 +237,7 @@
                     
                     @try
                     {
-                        _webSocketConnection = [AppLoggerWebSocketConnection connect:configuration.serverAddress withPort:[configuration.serverPort intValue] andProtocol:configuration.networkProtocol onApp:_applicationIdentifier withSecret:_applicationSecret forDevice:[mgntService deviceIdentifier] completion:^(AppLoggerWebSocketConnection *connection, NSError *error) {
+                        _webSocketConnection = [AppLoggerWebSocketConnection connect:configuration.serverAddress withPort:[configuration.serverPort intValue] andProtocol:configuration.networkProtocol onApp:_applicationIdentifier withSecret:_applicationSecret forDevice:[mgntService deviceIdentifier] andObserver:self completion:^(AppLoggerWebSocketConnection *connection, NSError *error) {
                             
                             if (error)
                             {
@@ -268,6 +268,13 @@
         
     });
     
+}
+
+# pragma watching the connection
+
+- (void) apploggerWatchersUpdated:(NSArray*)watchers {
+    if (_watcherDelegate)
+        [_watcherDelegate apploggerWatchersUpdated:watchers];
 }
 
 @end
