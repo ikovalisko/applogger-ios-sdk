@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "AsyncSocket.h"
 #import "ApploggerWatcherDelegate.h"
+#import "ApploggerWatcher.h"
 #import "ApploggerLogMessage.h"
 #import "ApploggerDDASLLogger.h"
 
@@ -16,6 +17,7 @@ typedef void (^ALManagerInitiateCompletionHandler)(BOOL successfull, NSError *er
 typedef void (^ALSocketConnectionCompletionHandler)(BOOL successfull, NSError *error);
 
 typedef void (^ALSupportSessionRequestCompletionHandler)(NSError *error);
+typedef void (^ALRequestWatchersProfileCompletionHandler)(ApploggerWatcher* watcher, NSError *error);
 
 @interface ApploggerManager : NSObject<ApploggerWatcherDelegate>
 
@@ -78,5 +80,10 @@ typedef void (^ALSupportSessionRequestCompletionHandler)(NSError *error);
  * is not disconnecting from the service.
  */
 - (void)requestSupportSession:(ALSupportSessionRequestCompletionHandler)completion;
+
+/*
+ * This request the user profile of a given watcher
+ */
+- (void)requestWatchersProfile:(NSString*)userIndentifier completion:(ALRequestWatchersProfileCompletionHandler)completion;
 
 @end

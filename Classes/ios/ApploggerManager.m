@@ -277,4 +277,12 @@
         [_watcherDelegate apploggerWatchersUpdated:watchers];
 }
 
+- (void)requestWatchersProfile:(NSString*)userIndentifier completion:(ALRequestWatchersProfileCompletionHandler)completion {
+    ApploggerWatcher* watcher = [[ApploggerWatcher alloc] init];
+    [watcher setName:@"Demo User (Watcher)"];
+    [watcher setAvatar:nil];
+    
+    completion(watcher, nil);
+}
+
 @end
