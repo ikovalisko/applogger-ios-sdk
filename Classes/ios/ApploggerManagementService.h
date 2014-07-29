@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "ApploggerLogStreamConfiguration.h"
+#import "ApploggerWatcher.h"
 
 typedef void (^ALMSAnnounceDeviceCompletionHandler)(NSError *error);
 typedef void (^ALMSRequestDataStreamConfigurationCompletionHandler)(AppLoggerLogStreamConfiguration* configuration, NSError *error);
+typedef void (^ALMSRequestWatchersProfileCompletionHandler)(ApploggerWatcher* watcher, NSError *error);
 
 @interface AppLoggerManagementService : NSObject
 
@@ -21,5 +23,7 @@ typedef void (^ALMSRequestDataStreamConfigurationCompletionHandler)(AppLoggerLog
 - (void) announceDeviceWithName:(NSString*)name completion:(ALMSAnnounceDeviceCompletionHandler)completion;
 
 - (void) requestDataStreamConfiguration:(ALMSRequestDataStreamConfigurationCompletionHandler)completion;
+
+- (void) requestWatchersProfile:(NSString*)userIndentifier completion:(ALMSRequestWatchersProfileCompletionHandler)completion;
 
 @end

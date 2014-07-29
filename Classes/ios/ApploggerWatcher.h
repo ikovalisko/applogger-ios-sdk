@@ -10,6 +10,11 @@
 
 @interface ApploggerWatcher : NSObject
 
+/*
+ * The unique identifier of the watcher
+ */
+@property (nonatomic, strong) NSString* Identifier;
+
 /* 
  * Contains the name of the user is watching the stream 
  */

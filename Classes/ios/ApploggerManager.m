@@ -278,11 +278,11 @@
 }
 
 - (void)requestWatchersProfile:(NSString*)userIndentifier completion:(ALRequestWatchersProfileCompletionHandler)completion {
-    ApploggerWatcher* watcher = [[ApploggerWatcher alloc] init];
-    [watcher setName:@"Demo User (Watcher)"];
-    [watcher setAvatar:nil];
     
-    completion(watcher, nil);
+    AppLoggerManagementService* mgntService = [AppLoggerManagementService service:_applicationIdentifier withSecret:_applicationSecret andServiceUri:_apiURL];
+    [mgntService requestWatchersProfile:userIndentifier completion:^(ApploggerWatcher *watcher, NSError *error) {
+        completion(watcher, error);
+    }];
 }
 
 @end

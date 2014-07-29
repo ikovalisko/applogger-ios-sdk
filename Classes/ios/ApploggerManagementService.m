@@ -153,4 +153,59 @@
     [request setValue:[NSString stringWithFormat:@"Secret %@", authPayload] forHTTPHeaderField:@"Authorization"];
 }
 
+- (void) requestWatchersProfile:(NSString*)userIndentifier completion:(ALMSRequestWatchersProfileCompletionHandler)completion {
+
+    // create the url for profile
+    NSURL* requestProfileUrl = [self createDeviceRequestUrl:[[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString]];
+    requestProfileUrl = [self append:@"/watchers/" toRequestUrl:requestProfileUrl];
+    requestProfileUrl = [self append:userIndentifier toRequestUrl:requestProfileUrl];
+    
+    // Set Url for get profile
+    NSMutableURLRequest * profileRequest = [NSMutableURLRequest requestWithURL: requestProfileUrl];
+    
+    // configure the correct http headers
+    [profileRequest setHTTPMethod:@"GET"];
+    [profileRequest addValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+    
+    // attach the authorization header because we have a harvester request
+    [self attachAuthorizationHeaderToRequest:profileRequest];
+    
+    // query the data
+    [NSURLConnection sendAsynchronousRequest:profileRequest queue:_networkQueue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        if (connectionError)
+            completion(nil, connectionError);
+        else if ([(NSHTTPURLResponse*)response statusCode] != 200)
+            completion(nil, [NSError errorWithDomain:@"HTTP Error" code:[(NSHTTPURLResponse*)response statusCode] userInfo:nil]);
+        else {
+            
+            // parse the result
+            NSError* parseError = nil;
+            NSDictionary* result = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&parseError];
+            
+            // check if we have at lease a name
+            if (!result || ![result objectForKey:@"name"])
+            {
+                completion(nil, parseError);
+                return;
+            }
+            
+            // generate the reuslt obejct
+            ApploggerWatcher* watcher = [[ApploggerWatcher alloc] init];
+            [watcher setIdentifier:userIndentifier];
+            [watcher setName:[result objectForKey:@"name"]];
+            
+            // check if we have an icon
+            if ([result objectForKey:@"image"]) {
+                
+                // load the image data
+                NSData* iconData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[result objectForKey:@"image"]]];
+                [watcher setAvatar:iconData];
+            }
+            
+            // done
+            completion(watcher, nil);
+        }
+    }];
+}
+
 @end
