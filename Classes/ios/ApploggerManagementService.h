@@ -13,6 +13,7 @@
 typedef void (^ALMSAnnounceDeviceCompletionHandler)(NSError *error);
 typedef void (^ALMSRequestDataStreamConfigurationCompletionHandler)(AppLoggerLogStreamConfiguration* configuration, NSError *error);
 typedef void (^ALMSRequestWatchersProfileCompletionHandler)(ApploggerWatcher* watcher, NSError *error);
+typedef void (^ALMSRequestSupportSessionCompletionHandler)(NSError *error);
 
 @interface AppLoggerManagementService : NSObject
 
@@ -25,5 +26,7 @@ typedef void (^ALMSRequestWatchersProfileCompletionHandler)(ApploggerWatcher* wa
 - (void) requestDataStreamConfiguration:(ALMSRequestDataStreamConfigurationCompletionHandler)completion;
 
 - (void) requestWatchersProfile:(NSString*)userIndentifier completion:(ALMSRequestWatchersProfileCompletionHandler)completion;
+
+- (void) requestSupportSession:(ALMSRequestSupportSessionCompletionHandler)completion;
 
 @end

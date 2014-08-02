@@ -31,6 +31,8 @@
 }
 
 @property (nonatomic, strong) AppLoggerWebSocketConnection* webSocketConnection;
+@property (readonly) BOOL loggingIsStarted;
+
 @end
 
 @implementation ApploggerManager
@@ -139,7 +141,9 @@
             if (completion)
                completion(NO, error);
         }
-        
+    } else {
+        // if we are running just finish the call so multiple calls are allowed
+        completion(NO, nil);
     }
     
 }
@@ -283,6 +287,30 @@
     [mgntService requestWatchersProfile:userIndentifier completion:^(ApploggerWatcher *watcher, NSError *error) {
         completion(watcher, error);
     }];
+}
+
+
+- (void)requestSupportSession:(ALSupportSessionRequestCompletionHandler)completion {
+    
+    // First ensure that the applogger connection is established
+    [self startApploggerManagerWithCompletion:^(BOOL successfull, NSError *error) {
+        
+        // if we got an error stop here
+        if (!successfull || error) {
+            completion(nil, error);
+            return;
+        }
+        
+        // Now send the support request to the system
+        AppLoggerManagementService* mgntService = [AppLoggerManagementService service:_applicationIdentifier withSecret:_applicationSecret andServiceUri:_apiURL];
+        [mgntService requestSupportSession:^(NSError *error) {
+                    completion(nil, error);
+        }];
+    }];
+}
+
+- (void)cancelRequestedSupportSession:(ALSupportSessionCancelCompletionHandler)completion {
+    completion(nil);
 }
 
 @end

@@ -16,7 +16,8 @@
 typedef void (^ALManagerInitiateCompletionHandler)(BOOL successfull, NSError *error);
 typedef void (^ALSocketConnectionCompletionHandler)(BOOL successfull, NSError *error);
 
-typedef void (^ALSupportSessionRequestCompletionHandler)(NSError *error);
+typedef void (^ALSupportSessionRequestCompletionHandler)(ApploggerWatcher* watcher, NSError *error);
+typedef void (^ALSupportSessionCancelCompletionHandler)(NSError *error);
 typedef void (^ALRequestWatchersProfileCompletionHandler)(ApploggerWatcher* watcher, NSError *error);
 
 @interface ApploggerManager : NSObject<ApploggerWatcherDelegate>
@@ -25,11 +26,6 @@ typedef void (^ALRequestWatchersProfileCompletionHandler)(ApploggerWatcher* watc
  * Use this delegate to become notified when a new user is watching the stream
  */
 @property (nonatomic, strong) id<ApploggerWatcherDelegate> watcherDelegate;
-
-/*
- * Indicator whether applogger is started
- */
-@property (readonly) BOOL loggingIsStarted;
 
 /*
  * create a shared instance of this class
@@ -80,6 +76,12 @@ typedef void (^ALRequestWatchersProfileCompletionHandler)(ApploggerWatcher* watc
  * is not disconnecting from the service.
  */
 - (void)requestSupportSession:(ALSupportSessionRequestCompletionHandler)completion;
+
+/*
+ * Call this method to cancel a pending support session. When the session is established, just call stopApploggerManager
+ * to disconnect from the platform 
+ */
+- (void)cancelRequestedSupportSession:(ALSupportSessionCancelCompletionHandler)completion;
 
 /*
  * This request the user profile of a given watcher
