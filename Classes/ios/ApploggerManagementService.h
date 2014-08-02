@@ -29,4 +29,6 @@ typedef void (^ALMSRequestSupportSessionCompletionHandler)(NSError *error);
 
 - (void) requestSupportSession:(ALMSRequestSupportSessionCompletionHandler)completion;
 
+- (void) cancelRequestedSupportSession:(ALMSRequestSupportSessionCompletionHandler)completion;
+
 @end

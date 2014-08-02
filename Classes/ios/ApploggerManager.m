@@ -347,7 +347,26 @@
 }
 
 - (void)cancelRequestedSupportSession:(ALSupportSessionCancelCompletionHandler)completion {
-    completion(nil);
+    
+    // this method first checks if a support session is pending
+    if (_delayedSupportSessionCompletion) {
+        
+        // if so we stop the connection
+        [self stopApploggerManager];
+        
+        // reseting the state
+        _delayedSupportSessionCompletion = nil;
+        
+        // notify the backend that the support session is not needed anymore
+        AppLoggerManagementService* mgntService = [AppLoggerManagementService service:_applicationIdentifier withSecret:_applicationSecret andServiceUri:_apiURL];
+        [mgntService cancelRequestedSupportSession:^(NSError *error) {
+            completion(error);
+        }];
+        
+    } else {
+        // it's done
+        completion(nil);
+    }
 }
 
 @end
