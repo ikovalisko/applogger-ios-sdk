@@ -32,7 +32,7 @@
 
 @property (nonatomic, strong) AppLoggerWebSocketConnection* webSocketConnection;
 @property (readonly) BOOL loggingIsStarted;
-
+@property (nonatomic, copy) ALSupportSessionRequestCompletionHandler delayedSupportSessionCompletion;
 @end
 
 @implementation ApploggerManager
@@ -77,7 +77,10 @@
         //Initialize Log Queue
         _logQueue = [[NSOperationQueue alloc] init];
         [_logQueue setMaxConcurrentOperationCount:5];
-        [_logQueue setName:@"ioBeaverLogQueue"];        
+        [_logQueue setName:@"ioBeaverLogQueue"];
+        
+        // no watchers at beginning
+        _currentWatchers = [[NSArray alloc] init];
     }
     
     return self;
@@ -149,9 +152,15 @@
 }
 
 -(void)stopApploggerManager{
+    
+    // stop the logger
     _loggingIsStarted = NO;
+    
+    // disconnect
     [_clientSocket disconnect];
 
+    // reset the watchers state
+    _currentWatchers = [[NSArray alloc] init];
 }
 
 -(void)addLogMessage:(AppLoggerLogMessage*)message{
@@ -277,6 +286,17 @@
 # pragma watching the connection
 
 - (void) apploggerWatchersUpdated:(NSArray*)watchers {
+
+    // release a waiting support session request
+    if(_delayedSupportSessionCompletion && watchers && [watchers count] > 0) {
+        _delayedSupportSessionCompletion([watchers firstObject], nil);
+        _delayedSupportSessionCompletion = nil;
+    }
+    
+    // cache the new set on watchers
+    _currentWatchers = [NSArray arrayWithArray:watchers];
+    
+    // notify the delegate
     if (_watcherDelegate)
         [_watcherDelegate apploggerWatchersUpdated:watchers];
 }
@@ -304,7 +324,24 @@
         // Now send the support request to the system
         AppLoggerManagementService* mgntService = [AppLoggerManagementService service:_applicationIdentifier withSecret:_applicationSecret andServiceUri:_apiURL];
         [mgntService requestSupportSession:^(NSError *error) {
-                    completion(nil, error);
+            
+            // if we got an erro stop here
+            if (error) {
+                completion(nil, error);
+                return;
+            }
+            
+            // Check if someon watching this stream
+            if ([_currentWatchers count] > 0) {
+                
+                // Ok we have watchers so we can complete the call directly
+                completion([_currentWatchers firstObject], nil);
+                
+            } else {
+                // At this point we need to wait until the admin is starting the session, this happens when a new watcher
+                // is viewing them. Because of that we just register this as a delayed completion
+                _delayedSupportSessionCompletion = completion;
+            }
         }];
     }];
 }

@@ -16,7 +16,7 @@
 typedef void (^ALManagerInitiateCompletionHandler)(BOOL successfull, NSError *error);
 typedef void (^ALSocketConnectionCompletionHandler)(BOOL successfull, NSError *error);
 
-typedef void (^ALSupportSessionRequestCompletionHandler)(ApploggerWatcher* watcher, NSError *error);
+typedef void (^ALSupportSessionRequestCompletionHandler)(NSString* watcherIdentifier, NSError *error);
 typedef void (^ALSupportSessionCancelCompletionHandler)(NSError *error);
 typedef void (^ALRequestWatchersProfileCompletionHandler)(ApploggerWatcher* watcher, NSError *error);
 
@@ -26,6 +26,11 @@ typedef void (^ALRequestWatchersProfileCompletionHandler)(ApploggerWatcher* watc
  * Use this delegate to become notified when a new user is watching the stream
  */
 @property (nonatomic, strong) id<ApploggerWatcherDelegate> watcherDelegate;
+
+/*
+ * This array contains the amount of watchers currently watching the stream 
+ */
+@property (nonatomic, strong) NSArray* currentWatchers;
 
 /*
  * create a shared instance of this class
@@ -62,7 +67,7 @@ typedef void (^ALRequestWatchersProfileCompletionHandler)(ApploggerWatcher* watc
 -(void)stopApploggerManager;
 
 /*
- * add MEssage to Log stream on server
+ * add Message to Log stream on server
  */
 -(void)addLogMessage:(AppLoggerLogMessage*)message;
 
