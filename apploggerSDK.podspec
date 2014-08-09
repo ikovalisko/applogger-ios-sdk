@@ -25,4 +25,10 @@ Pod::Spec.new do |s|
   s.prepare_command = <<-CMD
 			git submodule update --init --recursive
                   CMD
+                  
+  s.prefix_header_contents = '#define TTYLogDisable 0
+
+#if TTYLogDisable
+    #define NSLog(...)
+#endif'
 end
