@@ -26,9 +26,8 @@ Pod::Spec.new do |s|
 			git submodule update --init --recursive
                   CMD
                   
-  s.prefix_header_contents = '#define TTYLogDisable 0
-
-#if TTYLogDisable
-    #define NSLog(...)
-#endif'
+  s.prefix_header_contents = '#define NSLog(...) internalLog(__VA_ARGS__);
+  #ifdef __OBJC__
+  #import "ioApploggerHelper.h"
+  #endif'
 end

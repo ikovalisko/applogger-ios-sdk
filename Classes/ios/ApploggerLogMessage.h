@@ -12,5 +12,6 @@
 
 @property (nonatomic) NSString *message;
 @property (nonatomic) NSString *methodName;
+@property (nonatomic) NSString *logLineVersion;
 
 @end

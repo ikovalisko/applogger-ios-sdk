@@ -20,5 +20,9 @@
 +(NSString *)createBase64String:(NSData *)data WithLength:(unsigned long)length;
 +(NSString *)createBase64StringFromString:(NSString*)string;
 
+/*
+ * internal log method to enable / disable log in sdk
+ */
+void internalLog(NSString *format, ...);
 
 @end

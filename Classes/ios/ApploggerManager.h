@@ -11,6 +11,8 @@
 #import "ApploggerLogMessage.h"
 #import "ApploggerDDASLLogger.h"
 
+#define LogLineVersion @"01"
+
 typedef void (^ALManagerInitiateCompletionHandler)(BOOL successfull, NSError *error);
 typedef void (^ALSocketConnectionCompletionHandler)(BOOL successfull, NSError *error);
 
@@ -20,6 +22,11 @@ typedef void (^ALSocketConnectionCompletionHandler)(BOOL successfull, NSError *e
  * Indicator whether applogger is started
  */
 @property (readonly) BOOL loggingIsStarted;
+
+/*
+ * enable / disable TTY log for SDK
+ */
+@property (readwrite) BOOL isSDKConsoleLogEnable;
 
 /*
  * create a shared instance of this class
