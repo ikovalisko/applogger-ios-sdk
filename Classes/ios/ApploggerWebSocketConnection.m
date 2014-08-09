@@ -101,7 +101,7 @@
         
         // create the timestamp string
         NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-        dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ssZ";
+        dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ssZZZZZ";
         NSDate *now = [NSDate date];
         NSString *timeStamp = [dateFormatter stringFromDate:now];
     
