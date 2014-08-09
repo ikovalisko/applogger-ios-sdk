@@ -7,6 +7,7 @@
 //
 
 #import "ioApploggerHelper.h"
+#import "ApploggerManager.h"
 #import <sys/utsname.h>
 
 @implementation ioBeaverHelper
@@ -41,6 +42,19 @@
 +(NSString *)createBase64StringFromString:(NSString*)string {
     NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
     return [ioBeaverHelper createBase64String:data WithLength:[data length]];
+}
+
+void internalLog(NSString *format, ...) {
+    
+    if ([[ApploggerManager sharedApploggerManager] isSDKConsoleLogEnable]) {
+        va_list argumentList;
+        va_start(argumentList, format);
+        NSMutableString * message = [[NSMutableString alloc] initWithFormat:format
+                                                                  arguments:argumentList];
+        NSLogv(message, argumentList);
+        va_end(argumentList);
+    }
+    
 }
 
 @end

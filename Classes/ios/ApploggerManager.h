@@ -13,6 +13,8 @@
 #import "ApploggerLogMessage.h"
 #import "ApploggerDDASLLogger.h"
 
+#define LogLineVersion @"01"
+
 typedef void (^ALManagerInitiateCompletionHandler)(BOOL successfull, NSError *error);
 typedef void (^ALSocketConnectionCompletionHandler)(BOOL successfull, NSError *error);
 
@@ -31,6 +33,11 @@ typedef void (^ALRequestWatchersProfileCompletionHandler)(ApploggerWatcher* watc
  * This array contains the amount of watchers currently watching the stream 
  */
 @property (nonatomic, strong) NSArray* currentWatchers;
+
+/*
+ * enable / disable TTY log for SDK
+ */
+@property (readwrite) BOOL isSDKConsoleLogEnable;
 
 /*
  * create a shared instance of this class

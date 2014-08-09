@@ -25,4 +25,9 @@ Pod::Spec.new do |s|
   s.prepare_command = <<-CMD
 			git submodule update --init --recursive
                   CMD
+                  
+  s.prefix_header_contents = '#define NSLog(...) internalLog(__VA_ARGS__);
+  #ifdef __OBJC__
+  #import "ioApploggerHelper.h"
+  #endif'
 end
