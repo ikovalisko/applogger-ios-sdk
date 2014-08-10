@@ -104,7 +104,7 @@
         NSString *timeStamp = [dateFormatter stringFromDate:now];
     
         // create log Message
-        NSData *messageData = [[NSString stringWithFormat:@"%@ - %@ -- [%@] : %@", message.logLineVersion, timeStamp, message.methodName, message.message] dataUsingEncoding:NSUTF8StringEncoding];
+        NSData *messageData = [[NSString stringWithFormat:@"%@ - %@ -- [%@ %@] : %@", message.logLineVersion, timeStamp, message.className, message.methodName, message.message] dataUsingEncoding:NSUTF8StringEncoding];
     
         // encode base64
         NSString *logMessage = [ioBeaverHelper createBase64String:messageData WithLength:[messageData length]];
