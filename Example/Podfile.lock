@@ -30,6 +30,6 @@ SPEC CHECKSUMS:
   CocoaLumberjack: 5766cdd1d0a24bcf15a133c6023747346bf786dd
   HockeySDK: f9af97c2f5df4eb6ca6d2a9c408f2ff498edd608
   MBProgressHUD: c356980b0cd097f19acec959b49dca5eb8ec31be
-  NSLogger: c4df4b0208d724f244c05f1966b7402f14d7bf55
+  NSLogger: 3df5dca5dcbf99fe1e5c54931e44880f6e7eb089
 
 COCOAPODS: 0.33.1
