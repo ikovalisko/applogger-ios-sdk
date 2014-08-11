@@ -105,6 +105,11 @@ typedef void (^ALRequestWatchersProfileCompletionHandler)(ApploggerWatcher* watc
  */
 -(NSString*)getAssignDeviceLink;
 
+/*!
+ * Add NSLogger connection for applogger
+ */
+-(void)registerNSLoggerConnectionWithDelegate:(id<ApploggerNSLoggerDelegate>) delegate;
+
 /*
  * Call this method to request a support session. The support session has the state pending as long the device
  * is not disconnecting from the service.
