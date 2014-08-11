@@ -23,9 +23,11 @@
 + (AppLoggerWebSocketConnection*) connect:(NSString*)host withPort:(NSInteger)port andProtocol:(NSString*)protocol
                                     onApp:(NSString*)appId withSecret:(NSString*)appSecret
                                 forDevice:(NSString*)deviceId
+                              andObserver:(id<ApploggerWatcherDelegate>)observer
                                completion:(AppLoggerWebSockerConnectionOpenHandler)completion;
 {
     AppLoggerWebSocketConnection* connection = [[AppLoggerWebSocketConnection alloc] init];
+    [connection setWatcherDelegate:observer];
     [connection connect:host withPort:port andProtocol:protocol onApp:appId withSecret:appSecret forDevice:deviceId completion:completion];
     return connection;
 }
@@ -139,7 +141,9 @@
             }
 
         }
-
+        
+        // notify the delegate
+        [self apploggerWatchersUpdated:listeningUsers];
     }
     
 }
@@ -150,6 +154,13 @@
         if (_webSocketOpenCompletionHandler)
             _webSocketOpenCompletionHandler(self, error);
     }
+}
+
+#pragma mark ApploggerWatcherDelegate
+
+- (void) apploggerWatchersUpdated:(NSArray*)watchers {
+    if (_watcherDelegate)
+        [_watcherDelegate apploggerWatchersUpdated:watchers];
 }
 
 @end

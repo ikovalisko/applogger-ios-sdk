@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "AsyncSocket.h"
+#import "ApploggerWatcherDelegate.h"
+#import "ApploggerWatcher.h"
 #import "ApploggerLogMessage.h"
 #import "ApploggerDDASLLogger.h"
 #import "ApploggerNSLogger.h"
@@ -19,14 +21,24 @@ typedef void (^ALManagerRegisterDeviceCompletionHandler)(BOOL successfull, NSErr
 typedef void (^ALManagerSessionCompletionHandler)(BOOL successfull, NSError *error);
 typedef void (^ALSocketConnectionCompletionHandler)(BOOL successfull, NSError *error);
 
+typedef void (^ALSupportSessionRequestCompletionHandler)(NSString* watcherIdentifier, NSError *error);
+typedef void (^ALSupportSessionCancelCompletionHandler)(NSError *error);
+typedef void (^ALRequestWatchersProfileCompletionHandler)(ApploggerWatcher* watcher, NSError *error);
+
 @class GCDAsyncSocket;
 
-@interface ApploggerManager : NSObject
+@interface ApploggerManager : NSObject<ApploggerWatcherDelegate>
 
 /*
- * Indicator whether applogger is started
+ * Use this delegate to become notified when a new user is watching the stream
  */
 @property (readonly) BOOL loggingIsStarted;
+@property (nonatomic, strong) id<ApploggerWatcherDelegate> watcherDelegate;
+
+/*
+ * This array contains the amount of watchers currently watching the stream 
+ */
+@property (nonatomic, strong) NSArray* currentWatchers;
 
 /*
  * enable / disable TTY log for SDK
@@ -49,6 +61,11 @@ typedef void (^ALSocketConnectionCompletionHandler)(BOOL successfull, NSError *e
  * set application identifier
  */
 -(void) setApplicationIdentifier:(NSString*)identifier AndSecret:(NSString*)secret;
+
+/*
+ * allows to override the devicename
+ */
+-(void) setDeviceName:(NSString*)name;
 
 /*
  * start the Applogger
@@ -79,7 +96,7 @@ typedef void (^ALSocketConnectionCompletionHandler)(BOOL successfull, NSError *e
     __attribute__((deprecated("Please use the stopSessionWithCompletion method instead")));;
 
 /*
- * add MEssage to Log stream on server
+ * add Message to Log stream on server
  */
 -(void)addLogMessage:(AppLoggerLogMessage*)message;
 
@@ -88,9 +105,21 @@ typedef void (^ALSocketConnectionCompletionHandler)(BOOL successfull, NSError *e
  */
 -(NSString*)getAssignDeviceLink;
 
-/*!
- * Add NSLogger connection for applogger
+/*
+ * Call this method to request a support session. The support session has the state pending as long the device
+ * is not disconnecting from the service.
  */
--(void)registerNSLoggerConnectionWithDelegate:(id<ApploggerNSLoggerDelegate>) delegate;
+- (void)requestSupportSession:(ALSupportSessionRequestCompletionHandler)completion;
+
+/*
+ * Call this method to cancel a pending support session. When the session is established, just call stopApploggerManager
+ * to disconnect from the platform 
+ */
+- (void)cancelRequestedSupportSession:(ALSupportSessionCancelCompletionHandler)completion;
+
+/*
+ * This request the user profile of a given watcher
+ */
+- (void)requestWatchersProfile:(NSString*)userIndentifier completion:(ALRequestWatchersProfileCompletionHandler)completion;
 
 @end
