@@ -67,6 +67,7 @@ static ApploggerDDASLLogger *sharedInstance;
         AppLoggerLogMessage *message = [[AppLoggerLogMessage alloc] init];
         message.message = logMessage->logMsg;
         message.methodName = [NSString stringWithFormat:@"%s", logMessage->function];
+        message.className = logMessage.fileName;
         [[ApploggerManager sharedApploggerManager] addLogMessage:message];
         
     });

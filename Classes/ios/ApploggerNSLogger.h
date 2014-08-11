@@ -19,7 +19,6 @@
 
 -(id)initWithDelegate:(id<ApploggerNSLoggerDelegate>) classDelegte;
 
-
 -(void)registerServer;
 
 @end

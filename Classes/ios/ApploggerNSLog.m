@@ -39,6 +39,7 @@ void logMessage(const char *fileName, const char *functionName, NSString *format
     NSString *timeStamp = [dateFormatter stringFromDate:[NSDate date]];
     
     NSString *method = @"";
+    NSString *className = @"";
     // To prevent crashes when logging not working
     @try {
     
@@ -53,6 +54,17 @@ void logMessage(const char *fileName, const char *functionName, NSString *format
                         stringByReplacingOccurrencesOfString:@"-" withString:@""]
                        stringByReplacingOccurrencesOfString:@"]" withString:@""]
                       lastPathComponent];
+        
+        // get path and name for className
+        className = [NSString stringWithUTF8String:fileName];
+        
+        // remove path
+        className = [[className pathComponents] lastObject];
+        
+        // remove class extension
+        if ([className rangeOfString:@"."].location != NSNotFound)
+            className = [className substringWithRange:NSMakeRange(0, [[[className pathComponents] lastObject] rangeOfString:@"." options:NSBackwardsSearch].location)];
+        
     }
     @catch (NSException *exception) {
         
@@ -62,6 +74,7 @@ void logMessage(const char *fileName, const char *functionName, NSString *format
     AppLoggerLogMessage *message = [[AppLoggerLogMessage alloc] init];
     message.message = body;
     message.methodName = [NSString stringWithFormat:@"%s", [method UTF8String]];
+    message.className = className;
     [[ApploggerManager sharedApploggerManager] addLogMessage:message];
     
 }

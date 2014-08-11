@@ -227,13 +227,17 @@
             
             @try {
                 
+                // add log line Version
+                message.logLineVersion = LogLineVersion;
+                
                 if ([_webSocketConnection hasValidListener]) {
                     
                     [_logQueue addOperationWithBlock:^{
                             @try {
                                 // send log when connection is available
-                                if (_webSocketConnection)
+                                if (_webSocketConnection){
                                     [_webSocketConnection log:message];
+                                }
                             }
                             @catch (NSException *exception) {
                             }

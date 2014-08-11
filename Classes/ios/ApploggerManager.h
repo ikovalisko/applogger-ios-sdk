@@ -12,21 +12,28 @@
 #import "ApploggerDDASLLogger.h"
 #import "ApploggerNSLogger.h"
 
-@class GCDAsyncSocket;
+#define LogLineVersion @"02"
 
 typedef void (^ALManagerInitiateCompletionHandler)(BOOL successfull, NSError *error);
 typedef void (^ALManagerRegisterDeviceCompletionHandler)(BOOL successfull, NSError *error);
 typedef void (^ALManagerSessionCompletionHandler)(BOOL successfull, NSError *error);
 typedef void (^ALSocketConnectionCompletionHandler)(BOOL successfull, NSError *error);
 
+@class GCDAsyncSocket;
+
 @interface ApploggerManager : NSObject
 
-/*!
+/*
  * Indicator whether applogger is started
  */
 @property (readonly) BOOL loggingIsStarted;
 
-/*!
+/*
+ * enable / disable TTY log for SDK
+ */
+@property (readwrite) BOOL isSDKConsoleLogEnable;
+
+/*
  * create a shared instance of this class
  */
 + (ApploggerManager *)sharedApploggerManager;
@@ -38,29 +45,16 @@ typedef void (^ALSocketConnectionCompletionHandler)(BOOL successfull, NSError *e
  */
 -(void)setServiceUri:(NSString*)serviceUri;
     
-/*!
+/*
  * set application identifier
  */
 -(void) setApplicationIdentifier:(NSString*)identifier AndSecret:(NSString*)secret;
 
-/*!
- * add MEssage to Log stream on server
- */
--(void)addLogMessage:(AppLoggerLogMessage*)message;
-
 /*
- * Temporarily Method to get assign link from app
+ * start the Applogger
+ * create stream and connect to server
  */
--(NSString*)getAssignDeviceLink;
-
-/*!
- * Add NSLogger connection for applogger
- */
--(void)registerNSLoggerConnectionWithDelegate:(id<ApploggerNSLoggerDelegate>) delegate;
-
-/*! Method is deprecated. Please use the chekInDevice and startSession methods instead
- */
--(void)startApploggerManagerWithCompletion:(ALManagerInitiateCompletionHandler)completion __attribute__((deprecated("Please use the chekInDevice and startSession methods instead")));
+-(void)startApploggerManagerWithCompletion:(ALManagerInitiateCompletionHandler)completion __attribute__((deprecated("Please use the chekInDevice and startSessionWithCompletion method instead")));
 
 /*!
  * to check in the device to apploggerr
@@ -77,10 +71,26 @@ typedef void (^ALSocketConnectionCompletionHandler)(BOOL successfull, NSError *e
  */
 -(void)stopSessionWithCompletion:(ALManagerSessionCompletionHandler)completion;
 
-/*!
+/*
  * stop the Applogger
  * disconnect from server
  */
--(void)stopApploggerManager;
+-(void)stopApploggerManager
+    __attribute__((deprecated("Please use the stopSessionWithCompletion method instead")));;
+
+/*
+ * add MEssage to Log stream on server
+ */
+-(void)addLogMessage:(AppLoggerLogMessage*)message;
+
+/*
+ * Temporarily Method to get assign link from app
+ */
+-(NSString*)getAssignDeviceLink;
+
+/*!
+ * Add NSLogger connection for applogger
+ */
+-(void)registerNSLoggerConnectionWithDelegate:(id<ApploggerNSLoggerDelegate>) delegate;
 
 @end

@@ -4,12 +4,12 @@ PODS:
     - CocoaLumberjack
     - NSLogger
   - CocoaAsyncSocket (7.3.5)
-  - CocoaLumberjack (1.9.0):
+  - CocoaLumberjack (1.9.1):
     - CocoaLumberjack/Extensions
-  - CocoaLumberjack/Core (1.9.0)
-  - CocoaLumberjack/Extensions (1.9.0):
+  - CocoaLumberjack/Core (1.9.1)
+  - CocoaLumberjack/Extensions (1.9.1):
     - CocoaLumberjack/Core
-  - HockeySDK (3.5.5)
+  - HockeySDK (3.5.6)
   - MBProgressHUD (0.8)
   - NSLogger (1.2)
 
@@ -25,10 +25,10 @@ EXTERNAL SOURCES:
     :path: ../apploggerSDK.podspec
 
 SPEC CHECKSUMS:
-  apploggerSDK: 8a668e2bd53755f2b81bf1a3295a6ed5dbd3bcd9
+  apploggerSDK: 86e7f1d8566daf2b2a8298a1f6cb1f5c9dedd4fb
   CocoaAsyncSocket: 45bdbbc1c0a5ed0640ff4c42af325ba43a2f099a
-  CocoaLumberjack: 5766cdd1d0a24bcf15a133c6023747346bf786dd
-  HockeySDK: f9af97c2f5df4eb6ca6d2a9c408f2ff498edd608
+  CocoaLumberjack: 94accd5749f5c5d15134c8d50f34a973aed8ef69
+  HockeySDK: 27d8b411208f9d3f70c8f6695a8defa2a3465721
   MBProgressHUD: c356980b0cd097f19acec959b49dca5eb8ec31be
   NSLogger: 3df5dca5dcbf99fe1e5c54931e44880f6e7eb089
 
