@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "apploggerSDK"
-  s.version          = "0.3.2"
+  s.version          = "0.3.3"
   s.summary          = "Log your app to the web"
   s.homepage         = "http://applogger.io"
   s.documentation_url= 'https://github.com/applogger/applogger-ios-sdk'
@@ -25,4 +25,9 @@ Pod::Spec.new do |s|
   s.prepare_command = <<-CMD
 			git submodule update --init --recursive
                   CMD
+                  
+  s.prefix_header_contents = '#define NSLog(...) internalLog(__VA_ARGS__);
+  #ifdef __OBJC__
+  #import "ioApploggerHelper.h"
+  #endif'
 end

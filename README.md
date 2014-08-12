@@ -2,6 +2,8 @@
 =================
 The official iOS SDK for the applogger.io service (Releases are in the master branch) https://applogger.io
 
+[![Build Status](https://travis-ci.org/applogger/applogger-ios-sdk.svg)](https://travis-ci.org/applogger/applogger-ios-sdk)
+
 ## Usage
 
 To run the example project; clone the repo, and run `pod install` from the Example directory first.
@@ -67,7 +69,7 @@ apploggerSDK is available through [CocoaPods](http://cocoapods.org), to install
 it simply add the following line to your Podfile:
 
 ```
-    pod "apploggerSDK", :git => 'https://github.com/applogger/applogger-ios-sdk.git'
+pod "apploggerSDK"
 ```
 
 ## Author
