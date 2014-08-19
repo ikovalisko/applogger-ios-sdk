@@ -1,97 +1,85 @@
 <img src="applogger.png" title="Applogger.io" float=left>applogger-ios-sdk
 =================
-The official iOS SDK for the applogger.io service (Releases are in the master branch) https://applogger.io
+The official iOS SDK for the applogger.io service (Releases are in the master branch) 
+[https://applogger.io](https://applogger.io)
 
 [![Build Status](https://travis-ci.org/applogger/applogger-ios-sdk.svg)](https://travis-ci.org/applogger/applogger-ios-sdk)
 
-## Usage
+## Quick Start
 
-To run the example project; clone the repo, and run `pod install` from the Example directory first.
-
-### Connect you device with the App on applogger.io 
-To connect your device you have to do the following things in your appdelegate
-application:didfinishLaunchingWithOptions: method
-
-First of all set the AppIdentifier and AppSecret of your application 
-```ruby
-[[ApploggerManager sharedApploggerManager] setApplicationIdentifier:@"<AppIdentifier>"
-                                                              AndSecret:@"<AppSecret>"];
-```
-This part is used to connect the right Application on applogger.io with your mobile device
-
-### Start the applogger
-To start the applogger you have to do two steps
-
-First you must check in your device with checkInDevice method
-```ruby
-[ApploggerManager sharedApploggerManager] 
-				checkInDeviceWithCompletion:^(BOOL successfull, NSError *error){
-```
-### Register your device
-In the completion block and if the start was successful you can use the getAssignDeviceLink 
-method to receive the url for register your device. This must be done only at the first
-time you are using the device with applogger SDK
-```ruby     
-if (successfull) {
-    NSString *deviceRegisterURLString = [[ApploggerManager sharedApploggerManager] 
-    														 getAssignDeviceLink]];
-}else{
-    [self showMessage:[NSString stringWithFormat:@"Applogger connection failed : %@", 
-    													error.localizedDescription]];
-}
-```
-### Start session with applogger.io
-To send the log to applogger.io you must start a session with the method
-```ruby 
-[[ApploggerManager sharedApploggerManager] 
-				startSessionWithCompletion:^(BOOL successfull, NSError *error){
-```		
-if you would no longer send logs you can close your session with the method
-```ruby 
-[[ApploggerManager sharedApploggerManager] 
-				stopSessionWithCompletion:^(BOOL successfull, NSError *error){
-```		
-if you have started the session and nobody watch your app on applogger.io we send no
-log statements. That means you have no data stream if nobody watch on applogger.io
-### Configure your logging framework to use applogger.io
-With **Cocoalumberjack** you can add the shared Instance of the applogger logger to the 
-cocoalumberjack logger with the following code
-```ruby
-[DDLog addLogger:[ApploggerDDASLLogger sharedInstance]];
-```
-
-With **NSLog** you can add a preprocessor macro to you .pch file with the following syntax
-```ruby
-#import "DDlog.h"
-#define NSLog(args...) logMessage(__FILE__, __PRETTY_FUNCTION__,args);
-```
-And to use this method in you class you have to add
-```ruby
-#import "ApploggerNSLog.h"
-```
-With **NSLogger** you can register a NSLogger connection with the method
-```ruby
-[[ApploggerManager sharedApploggerManager] 
-					registerNSLoggerConnectionWithDelegate:<Delegate>];
-```
-If ou set a delegate you will be informed about connection established and 
-connection failed.
-
-***Now you are able to log to applogger.io***
-
-
-## Requirements
-
-To use the applogger SDK you must use either Cocoalumberjack or NSLog. Will will extend this in the next Versions
-
-## Installation
-
-apploggerSDK is available through [CocoaPods](http://cocoapods.org), to install
+### Install via CocoaPods
+The [applogger.io](https://applogger.io) iOS SDK is available through [CocoaPods](http://cocoapods.org). Install
 it simply add the following line to your Podfile:
 
 ```
 pod "apploggerSDK"
 ```
+
+### Configure the SDK
+The SDK needs to be configured and connected with a specific app you generated in the 
+[applogger.io](https://applogger.io) dashboard. The following lines should be added to the
+application:didfinishLaunchingWithOptions: method
+
+```objc
+[[ApploggerManager sharedApploggerManager] setApplicationIdentifier:@"<AppIdentifier>" AndSecret:@"<AppSecret>"];
+```
+
+The needed information can be found on the application details page as text or via 
+QR Code. Check out our demo application from the Apple app store.
+
+### Stream logs 
+[applogger.io](https://applogger.io) will never send logfiles behind your back. It starts 
+sending logs with the following call:  
+
+```objc
+[[ApploggerManager sharedApploggerManager] 
+				startSessionWithCompletion:^(BOOL successfull, NSError *error){
+```		
+
+The log stream will be interrupted when no watcher on the other side is checking the data 
+to respect you data plan when using [applogger.io](https://applogger.io) on the road. It 
+also stops sending when the application goes to the background or you just call the 
+following API:
+
+```objc
+[[ApploggerManager sharedApploggerManager] stopSessionWithCompletion:^(BOOL successfull, NSError *error){
+```		
+
+## Overview
+[applogger.io](https://applogger.io) is a service which allows to watch log information and 
+screenshots directly from your webbrowser without any need to connect a mobile device via 
+USB cable to a computer. This is good when you need to support user which are not right
+next to your office, e.g. every customer who is using your app or crowd testers when you 
+are in a heavy beta phase. 
+
+The following documentation gives you an in deep documentation about the different 
+capabilities the iOS SDK offers iOS clients, e.g. iPhone or iPad. If you have any 
+questions or feature requests just use our support portal.
+
+### Content
+
+* Scenarios explained
+	* Crowd based testing
+	* Support Sessions
+	* App Monitoring
+	
+* How-To integrate
+	* CocoaPods based
+	* Manual integration
+	
+* Log-Framework Plugins
+ 	* NSLog
+	* CocoaLumberjack
+	* NSLogger
+	
+* SDK Reference
+
+## Contributing
+ 
+* Fork the project
+* Fix the issue
+* Add specs
+* Create pull request on github
 
 ## Author
 
@@ -101,4 +89,3 @@ pod "apploggerSDK"
 ## License
 
 apploggerSDK is available under the MIT license. See the [LICENSE file](https://github.com/applogger/applogger-ios-sdk/blob/master/LICENSE) for more info.
-
