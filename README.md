@@ -57,6 +57,7 @@ capabilities the iOS SDK offers iOS clients, e.g. iPhone or iPad. If you have an
 questions or feature requests just use our support portal.
 
 ### Content
+The following information will be explained in detail in our wiki. Please check the wiki pages for this by starting [here](https://github.com/applogger/applogger-ios-sdk/wiki).
 
 * Scenarios explained
 	* Crowd based testing
