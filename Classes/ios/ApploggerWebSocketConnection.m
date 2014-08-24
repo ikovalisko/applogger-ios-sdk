@@ -11,6 +11,8 @@
 #import "ioApploggerHelper.h"
 #import "SocketIOPacket.h"
 
+#define CONNECTION_TIMEOUT 60.0f
+
 @interface AppLoggerWebSocketConnection() {
     AppLoggerWebSockerConnectionOpenHandler _webSocketOpenCompletionHandler;
     NSArray *listeningUsers;
@@ -54,7 +56,7 @@
         // generate the signature
         NSString *signature = [ioBeaverHelper createBase64StringFromString:appSecret];
 
-        [_webSocket connectToHost:host onPort:port withParams:[NSDictionary dictionaryWithObjectsAndKeys:@"harvester", @"client", appId, @"app", deviceId, @"device", signature, @"signature", nil]];
+        [_webSocket connectToHost:host onPort:port withParams:[NSDictionary dictionaryWithObjectsAndKeys:@"harvester", @"client", appId, @"app", deviceId, @"device", signature, @"signature", nil] withNamespace:nil withConnectionTimeout:CONNECTION_TIMEOUT];
     }
 }
 
