@@ -18,7 +18,6 @@
     NSString *_streamPath;
     NSString *_devicePath;
     NSString *_applicationIdentifier;
-    AsyncSocket __block *_clientSocket;
     NSString* _initializequeueName;
     NSDictionary *_lbLogStream;
     NSString *_applicationSecret;
@@ -65,10 +64,6 @@
 
         // set path to stream directory on server
         _devicePath = @"devices";
-
-        // create client socket for TCP connection and set delegate to this class
-        _clientSocket = [[AsyncSocket alloc] initWithDelegate:self];
-        [_clientSocket setRunLoopModes:[NSArray arrayWithObject:NSRunLoopCommonModes]];
 
         // set queue name for inizialize thread
         _initializequeueName = @"io.Beaver.InitializeQueue";
@@ -165,17 +160,12 @@
 -(void)startSessionWithCompletion:(ALManagerSessionCompletionHandler)completion{
     
     // only connect if not already started
-    if (!_loggingIsStarted) {
-        
-        if (_applicationIdentifier) {
+    @synchronized(self) {
+        if (!_loggingIsStarted) {
             
-            _loggingIsStarted = YES;
-            
-            NSError __block * error = nil;
-            
-            // check whether the client socket is alread connected
-            if (![_clientSocket isConnected])
-            {
+            if (_applicationIdentifier) {
+                
+                _loggingIsStarted = YES;
                 
                 [self connectWebSocketWithCompletion:^(BOOL successfull, NSError *error){
                     
@@ -184,28 +174,19 @@
                     
                 }];
                 
-                return;
             }else{
-                // Create error that could not get stream information
-                error = [NSError errorWithDomain:@"AppLoggerManagerError" code:-1 userInfo:@{@"Message": @"Couldn't establish a connection to server"}];
-                
-                // log connection is established
+            
+                // Create error that app identifier not set and call completion
+                NSError *error = [NSError errorWithDomain:@"AppLoggerManagerError" code:-1 userInfo:@{@"Message": @"ApplicationIdentifier is not set"}];
+                if (completion)
+                    completion(NO, error);
             }
             
-            if (completion)
-                completion(NO, error);
-            
-        }else{
-            // Create error that app identifier not set and call completion
-            NSError *error = [NSError errorWithDomain:@"AppLoggerManagerError" code:-1 userInfo:@{@"Message": @"ApplicationIdentifier is not set"}];
-            if (completion)
-                completion(NO, error);
+        } else {
+            // if we are running just finish the call so multiple calls are allowed
+            completion(NO, nil);
         }
-    } else {
-        // if we are running just finish the call so multiple calls are allowed
-        completion(NO, nil);
     }
-    
 }
 
 -(void)stopSessionWithCompletion:(ALManagerSessionCompletionHandler)completion{
@@ -214,7 +195,8 @@
     _loggingIsStarted = NO;
     
     // disconnect
-    [_clientSocket disconnect];
+    if ( _webSocketConnection != nil)
+        [_webSocketConnection disconnect];
     
     // reset the watchers state
     _currentWatchers = [[NSArray alloc] init];
