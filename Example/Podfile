@@ -7,7 +7,6 @@ target "applogger-examples" do
 	platform :ios, '6.0'
 	pod 'apploggerSDK', :path => '../apploggerSDK.podspec'
 	pod 'MBProgressHUD', '>= 0.8'
-	pod 'HockeySDK', '>=3.5.4'
 	pod 'CocoaLumberjack'
     pod 'NSLogger', '>=1.2'
 end

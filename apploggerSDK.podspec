@@ -16,16 +16,13 @@ Pod::Spec.new do |s|
   s.osx.frameworks     = %w{CoreServices Security}
    s.osx.compiler_flags = '-Wno-format'
   s.libraries          = "icucore"
-  s.source_files = 'Classes/iOS/*.{h,m}', "socket.io/*.{h,m}", "socket.io/submodules/socket-rocket/SocketRocket/*.{h,m,c}"
+  s.source_files = 'Classes/iOS/*.{h,m}'
 
   s.dependency 'CocoaAsyncSocket', '~> 7.3.4'
   s.dependency 'CocoaLumberjack'
   s.dependency 'NSLogger'
+  s.dependency 'AZSocketIO', '0.0.6'
 
-  s.prepare_command = <<-CMD
-			git submodule update --init --recursive
-                  CMD
-                  
   s.prefix_header_contents = '#define NSLog(...) internalLog(__VA_ARGS__);
   #ifdef __OBJC__
   #import "ioApploggerHelper.h"
