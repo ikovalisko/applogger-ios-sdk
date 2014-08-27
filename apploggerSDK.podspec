@@ -22,8 +22,13 @@ Pod::Spec.new do |s|
   s.dependency 'CocoaLumberjack'
   s.dependency 'NSLogger'
   s.dependency 'AZSocketIO', '0.0.6'
-
+ 
+  s.prepare_command = <<-CMD
+	patch Pods/AZSocketIO < localpods/Patches/AZSocketUI-0.0.6.patch
+  CMD
+                  
   s.prefix_header_contents = '#define NSLog(...) internalLog(__VA_ARGS__);
+    
   #ifdef __OBJC__
   #import "ioApploggerHelper.h"
   #endif'
