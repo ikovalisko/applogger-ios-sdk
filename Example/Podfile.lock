@@ -40,6 +40,7 @@ PODS:
 
 DEPENDENCIES:
   - apploggerSDK (from `../apploggerSDK.podspec`)
+  - AZSocketIO (from `git@github.com:dei79/AZSocketIO.git`, branch `handshake_data`)
   - CocoaLumberjack
   - MBProgressHUD (>= 0.8)
   - NSLogger (>= 1.2)
@@ -47,11 +48,14 @@ DEPENDENCIES:
 EXTERNAL SOURCES:
   apploggerSDK:
     :path: ../apploggerSDK.podspec
+  AZSocketIO:
+    :branch: handshake_data
+    :git: git@github.com:dei79/AZSocketIO.git
 
 SPEC CHECKSUMS:
   AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
-  apploggerSDK: dc97082e2dd420778a77617c007970e8b7a34b8e
-  AZSocketIO: aae5bc1a9ecd47097f703d7c50fe78608e6d3355
+  apploggerSDK: 4274db081b6264357eda494696af0d3f095e7afa
+  AZSocketIO: df9e8d0308b157aaa220fadee8a83a2575015a4c
   CocoaAsyncSocket: 45bdbbc1c0a5ed0640ff4c42af325ba43a2f099a
   CocoaLumberjack: 94accd5749f5c5d15134c8d50f34a973aed8ef69
   MBProgressHUD: c356980b0cd097f19acec959b49dca5eb8ec31be
