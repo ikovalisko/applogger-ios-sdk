@@ -214,8 +214,13 @@ typedef void (^ALMSNetworkRequestCompletionHandler)(NSError *error);
             if ([result objectForKey:@"image"]) {
                 
                 // load the image data
-                NSData* iconData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[result objectForKey:@"image"]]];
-                [watcher setAvatar:iconData];
+                @try {
+                    NSData* iconData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[result objectForKey:@"image"]]];
+                    [watcher setAvatar:iconData];
+                }
+                @catch (NSException *exception) {
+
+                }
             }
             
             // done
