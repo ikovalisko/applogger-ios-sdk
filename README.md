@@ -60,20 +60,19 @@ questions or feature requests just use our support portal.
 The following information will be explained in detail in our wiki. Please check the wiki pages for this by starting [here](https://github.com/applogger/applogger-ios-sdk/wiki).
 
 * Scenarios explained
-	* Crowd based testing
-	* Support Sessions
-	* App Monitoring
+	* [[Crowd based testing|Scenario:-Crowd-based-testing]]
+	* [[Support Sessions|Scenario:-Support-Sessions]]
 	
 * How-To integrate
-	* CocoaPods based
-	* Manual integration
+	* [[via CocoaPods|Integration-via-CocoaPods]]
+	* Manually
 	
 * Log-Framework Plugins
- 	* NSLog
-	* CocoaLumberjack
-	* NSLogger
+ 	* [[NSLog|NSLog-integration]]
+	* [[CocoaLumberjack|CocoaLumberjack-integration]]
+	* [[NSLogger|NSLogger-integration]]
 	
-* SDK Reference
+* [[SDK Reference|API-Reference]]
 
 ## Contributing
  
