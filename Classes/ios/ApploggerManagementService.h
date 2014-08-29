@@ -27,8 +27,4 @@ typedef void (^ALMSRequestSupportSessionCompletionHandler)(NSError *error);
 
 - (void) requestWatchersProfile:(NSString*)userIndentifier completion:(ALMSRequestWatchersProfileCompletionHandler)completion;
 
-- (void) requestSupportSession:(ALMSRequestSupportSessionCompletionHandler)completion;
-
-- (void) cancelRequestedSupportSession:(ALMSRequestSupportSessionCompletionHandler)completion;
-
 @end

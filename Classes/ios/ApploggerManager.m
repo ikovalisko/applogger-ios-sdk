@@ -380,27 +380,20 @@
         }
         
         // Now send the support request to the system
-        AppLoggerManagementService* mgntService = [AppLoggerManagementService service:_applicationIdentifier withSecret:_applicationSecret andServiceUri:_apiURL];
-        [mgntService requestSupportSession:^(NSError *error) {
+        [_webSocketConnection requestSupportSession];
+        
+        
+        // Check if someon watching this stream
+        if ([_currentWatchers count] > 0) {
             
-            // if we got an erro stop here
-            if (error) {
-                completion(nil, error);
-                return;
-            }
+            // Ok we have watchers so we can complete the call directly
+            completion([_currentWatchers firstObject], nil);
             
-            // Check if someon watching this stream
-            if ([_currentWatchers count] > 0) {
-                
-                // Ok we have watchers so we can complete the call directly
-                completion([_currentWatchers firstObject], nil);
-                
-            } else {
-                // At this point we need to wait until the admin is starting the session, this happens when a new watcher
-                // is viewing them. Because of that we just register this as a delayed completion
-                _delayedSupportSessionCompletion = completion;
-            }
-        }];
+        } else {
+            // At this point we need to wait until the admin is starting the session, this happens when a new watcher
+            // is viewing them. Because of that we just register this as a delayed completion
+            _delayedSupportSessionCompletion = completion;
+        }
     }];
 }
 
@@ -414,14 +407,10 @@
         
         // if so we stop the connection
         [self stopSessionWithCompletion:^(BOOL successfull, NSError *error) {
-            
-            // notify the backend that the support session is not needed anymore
-            AppLoggerManagementService* mgntService = [AppLoggerManagementService service:_applicationIdentifier withSecret:_applicationSecret andServiceUri:_apiURL];
-            [mgntService cancelRequestedSupportSession:^(NSError *error) {
-                completion(error);
-            }];
+           
+            // session stopped
+            completion(error);
         }];
-        
     } else {
         // it's done
         completion(nil);

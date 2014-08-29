@@ -54,5 +54,13 @@
     [_startStopButton setSelected:!_startStopButton.isSelected];
 }
 
+- (IBAction)requestSessionButtonTapped:(id)sender {
+    [[ApploggerManager sharedApploggerManager] requestSupportSession:^(NSString *watcherIdentifier, NSError *error) {
+        if (error)
+            [(ioAppDelegate*)[UIApplication sharedApplication].delegate showMessage:@"Failed to request"];
+        else
+            [(ioAppDelegate*)[UIApplication sharedApplication].delegate showMessage:@"Watcher arrived"];
+    }];
+}
 
 @end

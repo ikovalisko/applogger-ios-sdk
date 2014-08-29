@@ -24,8 +24,11 @@
         [[ApploggerManager sharedApploggerManager] setServiceUri:[NSString stringWithFormat:@"%@:%@/api", host, port]];
     }
     
+    // configure logging
+    [[ApploggerManager sharedApploggerManager] setIsSDKConsoleLogEnable:YES];
+    
     // configure local
-    // [[ApploggerManager sharedApploggerManager] setServiceUri:@"http://127.0.0.1:3000/api"];
+    [[ApploggerManager sharedApploggerManager] setServiceUri:@"http://127.0.0.1:3000/api"];
     
     // Set App Id
     [[ApploggerManager sharedApploggerManager] setApplicationIdentifier:@"5aaed731a250cd2bf52718d6cd67ed63"

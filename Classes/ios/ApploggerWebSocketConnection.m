@@ -130,6 +130,18 @@
     }
 }
 
+- (void) requestSupportSession {
+  
+    @synchronized(self)
+    {
+        if (![self hasValidConnection])
+            return;
+        
+        NSError* error = nil;
+        [_webSocket emit:@"harvester.requests.support" args:@{ @"data" : @"" } error:&error];
+    }
+}
+
 
 #pragma mark WebSocket Callback
 

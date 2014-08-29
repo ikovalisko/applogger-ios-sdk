@@ -224,29 +224,4 @@ typedef void (^ALMSNetworkRequestCompletionHandler)(NSError *error);
     }];
 }
 
-- (void) requestSupportSession:(ALMSRequestSupportSessionCompletionHandler)completion {
-    
-    // generate the post data
-    NSDictionary* postData = @{ @"support_session" : @{ @"status"    : @"pending"} };
-    
-    // perform the request
-    [self deviceRequestPost:[self deviceIdentifier] to:@"/support" data:postData completion:^(NSError *error) {
-        if (completion)
-            completion(error);
-    }];
-}
-
-- (void) cancelRequestedSupportSession:(ALMSRequestSupportSessionCompletionHandler)completion {
-
-    // generate the post data
-    NSDictionary* postData = @{ @"support_session" : @{ @"status"    : @"aborted"} };
-    
-    // perform the request
-    [self deviceRequestPost:[self deviceIdentifier] to:@"/support" data:postData completion:^(NSError *error) {
-        if (completion)
-            completion(error);
-    }];
-
-}
-
 @end
