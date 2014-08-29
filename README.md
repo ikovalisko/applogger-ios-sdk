@@ -3,8 +3,6 @@
 The official iOS SDK for the applogger.io service (Releases are in the master branch) 
 [https://applogger.io](https://applogger.io)
 
-[![Build Status](https://travis-ci.org/applogger/applogger-ios-sdk.svg)](https://travis-ci.org/applogger/applogger-ios-sdk)
-
 ## Quick Start
 
 ### Install via CocoaPods
