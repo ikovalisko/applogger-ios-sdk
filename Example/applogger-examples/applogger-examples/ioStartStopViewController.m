@@ -29,9 +29,19 @@
 - (IBAction)startStopApploggerClicked:(id)sender {
     
     if ([_startStopButton isSelected])
-        [[ApploggerManager sharedApploggerManager] stopApploggerManager];
+        [[ApploggerManager sharedApploggerManager] stopSessionWithCompletion:^(BOOL successfull, NSError *error) {
+ 
+            if (successfull) {
+                [(ioAppDelegate*)[UIApplication sharedApplication].delegate showMessage:@"Applogger connection closed"];
+            }else{
+                [(ioAppDelegate*)[UIApplication sharedApplication].delegate showMessage:[NSString stringWithFormat:@"Applogger connection could not be closed : %@", error.localizedDescription]];
+            }
+
+        }];
+    
     else
-        [[ApploggerManager sharedApploggerManager] startApploggerManagerWithCompletion:^(BOOL successfull, NSError *error){
+        [[ApploggerManager sharedApploggerManager] startSessionWithCompletion:^(BOOL successfull, NSError *error) {
+        //[[ApploggerManager sharedApploggerManager] startApploggerManagerWithCompletion:^(BOOL successfull, NSError *error){
             
             if (successfull) {
                 [(ioAppDelegate*)[UIApplication sharedApplication].delegate showMessage:@"Applogger connection established"];
@@ -44,5 +54,13 @@
     [_startStopButton setSelected:!_startStopButton.isSelected];
 }
 
+- (IBAction)requestSessionButtonTapped:(id)sender {
+    [[ApploggerManager sharedApploggerManager] requestSupportSession:^(NSString *watcherIdentifier, NSError *error) {
+        if (error)
+            [(ioAppDelegate*)[UIApplication sharedApplication].delegate showMessage:@"Failed to request"];
+        else
+            [(ioAppDelegate*)[UIApplication sharedApplication].delegate showMessage:@"Watcher arrived"];
+    }];
+}
 
 @end

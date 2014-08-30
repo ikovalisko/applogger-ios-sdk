@@ -13,6 +13,7 @@
 int main(int argc, char * argv[])
 {
     @autoreleasepool {
+        LoggerStartForBuildUser();
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([ioAppDelegate class]));
     }
 }

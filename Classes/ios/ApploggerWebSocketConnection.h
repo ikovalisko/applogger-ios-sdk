@@ -7,23 +7,28 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SocketIO.h"
+#import "ApploggerWatcherDelegate.h"
 
 @class AppLoggerWebSocketConnection;
 @class AppLoggerLogMessage;
 
 typedef void (^AppLoggerWebSockerConnectionOpenHandler)(AppLoggerWebSocketConnection* connection, NSError *error);
 
-@interface AppLoggerWebSocketConnection : NSObject<SocketIODelegate>
+@interface AppLoggerWebSocketConnection : NSObject
+
+@property (nonatomic, strong) id<ApploggerWatcherDelegate> watcherDelegate;
 
 + (AppLoggerWebSocketConnection*) connect:(NSString*)host withPort:(NSInteger)port andProtocol:(NSString*)protocol
                                     onApp:(NSString*)appId withSecret:(NSString*)appSecret
                                 forDevice:(NSString*)deviceId
+                              andObserver:(id<ApploggerWatcherDelegate>)observer
                                completion:(AppLoggerWebSockerConnectionOpenHandler)completion;
 
 - (void) disconnect;
 
 - (void) log:(AppLoggerLogMessage*)message;
+
+- (void) requestSupportSession;
 
 - (BOOL) hasValidConnection;
 

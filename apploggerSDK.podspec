@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "apploggerSDK"
-  s.version          = "0.3.3"
+  s.version          = "0.3.4-alpha"
   s.summary          = "Log your app to the web"
   s.homepage         = "http://applogger.io"
   s.documentation_url= 'https://github.com/applogger/applogger-ios-sdk'
@@ -14,19 +14,17 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.ios.frameworks     = %w{CFNetwork Security}
   s.osx.frameworks     = %w{CoreServices Security}
-  s.osx.compiler_flags = '-Wno-format'
+   s.osx.compiler_flags = '-Wno-format'
   s.libraries          = "icucore"
-  
-  s.source_files = 'Classes/iOS/*.{h,m}', "socket.io/*.{h,m}", "socket.io/submodules/socket-rocket/SocketRocket/*.{h,m,c}"
+  s.source_files = 'Classes/iOS/*.{h,m}'
 
   s.dependency 'CocoaAsyncSocket', '~> 7.3.4'
   s.dependency 'CocoaLumberjack'
-
-  s.prepare_command = <<-CMD
-			git submodule update --init --recursive
-                  CMD
-                  
+  s.dependency 'NSLogger'
+  s.dependency 'AZSocketIO', '0.0.6'
+ 
   s.prefix_header_contents = '#define NSLog(...) internalLog(__VA_ARGS__);
+    
   #ifdef __OBJC__
   #import "ioApploggerHelper.h"
   #endif'

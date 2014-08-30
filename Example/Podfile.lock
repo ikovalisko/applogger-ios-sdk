@@ -1,31 +1,65 @@
 PODS:
-  - apploggerSDK (0.3.2):
+  - AFNetworking (2.3.1):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+    - AFNetworking/UIKit
+  - AFNetworking/NSURLConnection (2.3.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.3.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.3.1)
+  - AFNetworking/Security (2.3.1)
+  - AFNetworking/Serialization (2.3.1)
+  - AFNetworking/UIKit (2.3.1):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - apploggerSDK (0.3.4-alpha):
+    - AZSocketIO (= 0.0.6)
     - CocoaAsyncSocket (~> 7.3.4)
     - CocoaLumberjack
+    - NSLogger
+  - AZSocketIO (0.0.6):
+    - AFNetworking (~> 2.x)
+    - SocketRocket (~> 0.x)
   - CocoaAsyncSocket (7.3.5)
   - CocoaLumberjack (1.9.1):
     - CocoaLumberjack/Extensions
   - CocoaLumberjack/Core (1.9.1)
   - CocoaLumberjack/Extensions (1.9.1):
     - CocoaLumberjack/Core
-  - HockeySDK (3.5.6)
   - MBProgressHUD (0.8)
+  - NSLogger (1.2)
+  - SocketRocket (0.3.1-beta2)
 
 DEPENDENCIES:
   - apploggerSDK (from `../apploggerSDK.podspec`)
+  - AZSocketIO (from `git@github.com:dei79/AZSocketIO.git`, branch `handshake_data`)
   - CocoaLumberjack
-  - HockeySDK (>= 3.5.4)
   - MBProgressHUD (>= 0.8)
+  - NSLogger (>= 1.2)
 
 EXTERNAL SOURCES:
   apploggerSDK:
     :path: ../apploggerSDK.podspec
+  AZSocketIO:
+    :branch: handshake_data
+    :git: git@github.com:dei79/AZSocketIO.git
 
 SPEC CHECKSUMS:
-  apploggerSDK: cefb6bf361aa6380858cc23d6385a1412d6c6c07
+  AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
+  apploggerSDK: 4274db081b6264357eda494696af0d3f095e7afa
+  AZSocketIO: df9e8d0308b157aaa220fadee8a83a2575015a4c
   CocoaAsyncSocket: 45bdbbc1c0a5ed0640ff4c42af325ba43a2f099a
   CocoaLumberjack: 94accd5749f5c5d15134c8d50f34a973aed8ef69
-  HockeySDK: 27d8b411208f9d3f70c8f6695a8defa2a3465721
   MBProgressHUD: c356980b0cd097f19acec959b49dca5eb8ec31be
+  NSLogger: 3df5dca5dcbf99fe1e5c54931e44880f6e7eb089
+  SocketRocket: 79a68ae186063c65e1fe6f638b1ae2927aa5f304
 
 COCOAPODS: 0.33.1

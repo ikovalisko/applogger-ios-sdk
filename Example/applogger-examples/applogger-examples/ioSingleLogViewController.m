@@ -17,8 +17,13 @@
 - (IBAction)sendSingleLogClickHandler:(id)sender {
     
     // Use cocoalumberjack
-    DDLogVerbose(@"Single Log Message");
+    DDLogVerbose(@"CocoaLumberjack - Single Log Message");
     NSLog(@"NSLog - Single Log");
+    
+    // Us NSLogger
+    //LogMessageCompat(@"------------ Test Log ---------------");
+    LoggerApp(4, @"Hello world! Today is: %@", [NSDate date]);
+
     // Use Applogger Logging
     //ApploggerLogMessage *message = [[ApploggerLogMessage alloc] init];
     //message.message = @"Single Log Message";

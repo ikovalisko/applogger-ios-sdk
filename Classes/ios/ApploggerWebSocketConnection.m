@@ -9,13 +9,13 @@
 #import "ApploggerWebSocketConnection.h"
 #import "ApploggerLogMessage.h"
 #import "ioApploggerHelper.h"
-#import "SocketIOPacket.h"
+#import "AZSocketIO.h"
 
 @interface AppLoggerWebSocketConnection() {
-    AppLoggerWebSockerConnectionOpenHandler _webSocketOpenCompletionHandler;
+    AZSocketIO* _webSocket;
     NSArray *listeningUsers;
 }
-@property (nonatomic, strong) SocketIO* webSocket;
+
 @end
 
 @implementation AppLoggerWebSocketConnection
@@ -23,9 +23,11 @@
 + (AppLoggerWebSocketConnection*) connect:(NSString*)host withPort:(NSInteger)port andProtocol:(NSString*)protocol
                                     onApp:(NSString*)appId withSecret:(NSString*)appSecret
                                 forDevice:(NSString*)deviceId
+                              andObserver:(id<ApploggerWatcherDelegate>)observer
                                completion:(AppLoggerWebSockerConnectionOpenHandler)completion;
 {
     AppLoggerWebSocketConnection* connection = [[AppLoggerWebSocketConnection alloc] init];
+    [connection setWatcherDelegate:observer];
     [connection connect:host withPort:port andProtocol:protocol onApp:appId withSecret:appSecret forDevice:deviceId completion:completion];
     return connection;
 }
@@ -37,29 +39,42 @@
 {
     @synchronized(self)
     {
-        // store the completion handler
-        _webSocketOpenCompletionHandler = completion;
-    
-        // client=harvester&app=052B56E9-DC0B-49AB-A029-98F3217696CC&device=e6c1ba54-5502-4b46-9055-dd77246b94d0&signature=NOTVALID"];
-        // establish the socket connection
-        _webSocket = [[SocketIO alloc] initWithDelegate:self];
-    
-        if ([protocol compare:@"http"] == NSOrderedSame)
-            [_webSocket setUseSecure:NO];
-        else
-            [_webSocket setUseSecure:YES];
-    
+        // check if we have an other socket open, if so close
+        if (_webSocket)
+            [self disconnect];
+        
+        // identify secure or not secure connection
+        BOOL bSecure = true;
+        if ([protocol compare:@"http"] == NSOrderedSame || [protocol compare:@"ws"] == NSOrderedSame)
+            bSecure = false;
+        
+        // create a new socket
+        _webSocket = [[AZSocketIO alloc] initWithHost:host andPort:[NSString stringWithFormat:@"%ld", (long)port] secure:bSecure];
+        
+        // register the event receiver
+        [_webSocket setEventReceivedBlock:^(NSString *eventName, id data) {
+            [self handleEvent:eventName withData:data];
+        }];
+        
         // generate the signature
         NSString *signature = [ioBeaverHelper createBase64StringFromString:appSecret];
-
-        [_webSocket connectToHost:host onPort:port withParams:[NSDictionary dictionaryWithObjectsAndKeys:@"harvester", @"client", appId, @"app", deviceId, @"device", signature, @"signature", nil]];
+        
+        // generate the query data
+        NSDictionary* queryData = [NSDictionary dictionaryWithObjectsAndKeys:@"harvester", @"client", appId, @"app", deviceId, @"device", signature, @"signature", nil];
+        
+        // connect
+        [_webSocket connectWithSuccess:^{
+            completion(self, nil);
+        } andFailure:^(NSError *error) {
+            completion(self, error);
+        } withData:queryData];
     }
 }
 
 - (void) disconnect {
     @synchronized(self)
     {
-        [_webSocket disconnectForced];
+        [_webSocket disconnect];
         _webSocket = nil;
     }
 }
@@ -70,7 +85,7 @@
     {
         if (!_webSocket)
             return NO;
-        else if ([_webSocket isConnected] || [_webSocket isConnecting])
+        else if (_webSocket.state == AZSocketIOStateConnected || _webSocket.state == AZSocketIOStateConnecting)
             return YES;
         else
             return NO;
@@ -94,7 +109,7 @@
     
     @synchronized(self)
     {
-        if (!_webSocket)
+        if (![self hasValidConnection])
             return;
         
         // create the timestamp string
@@ -110,46 +125,60 @@
         NSString *logMessage = [ioBeaverHelper createBase64String:messageData WithLength:[messageData length]];
     
         // send
-        [_webSocket sendEvent:@"harvester.log" withData:@{ @"data" : logMessage }];
+        NSError* error = nil;
+        [_webSocket emit:@"harvester.log" args:@{ @"data" : logMessage } error:&error];
+    }
+}
+
+- (void) requestSupportSession {
+  
+    @synchronized(self)
+    {
+        if (![self hasValidConnection])
+            return;
+        
+        NSError* error = nil;
+        [_webSocket emit:@"harvester.requests.support" args:@{ @"data" : @"" } error:&error];
     }
 }
 
 
 #pragma mark WebSocket Callback
 
-- (void) socketIO:(SocketIO *)socket didReceiveEvent:(SocketIOPacket *)packet {
-    @synchronized(self)
-    {
-        if ([packet.name compare:@"connection.established"] == NSOrderedSame && _webSocketOpenCompletionHandler)
-            _webSocketOpenCompletionHandler(self, nil);
-        // User listening event
-        else if ([packet.name compare:@"harvester.users"] == NSOrderedSame){
-            //Check whether a user is listening or not.
+- (void) handleEvent:(NSString*)eventName withData:(id) data {
+
+    // ignore the connection established massge
+    if ([eventName compare:@"connection.established"] == NSOrderedSame) {
+        
+        // NOTHING TODO BECAUSE WE HAVE BLOCK
+        
+    // User listening event
+    } else if ([eventName compare:@"harvester.users"] == NSOrderedSame) {
+        //Check whether a user is listening or not.
+        
+        // Savety check to be sure that the data exists
+        if (data != nil && [data isKindOfClass:[NSArray class]] && [data count] > 0) {
+            // Data example : <__NSCFArray 0x947e760>({users =     ();})
+            NSDictionary *usersDict = [data objectAtIndex:0];
             
-            // Savety check to be sure that the data exists
-            if ([packet.args isKindOfClass:[NSArray class]] && [packet.args count] > 0) {
-                // Data example : <__NSCFArray 0x947e760>({users =     ();})
-                NSDictionary *usersDict = [packet.args objectAtIndex:0];
-                
-                // set listening users if exists
-                if ([[usersDict allKeys] containsObject:@"users"]) {
-                    listeningUsers = [usersDict objectForKey:@"users"];
-                }
-                
+            // set listening users if exists
+            if ([[usersDict allKeys] containsObject:@"users"]) {
+                listeningUsers = [usersDict objectForKey:@"users"];
             }
-
         }
-
+        
+        // notify the delegate
+        [self apploggerWatchersUpdated:listeningUsers];
+    } else {
+        internalLog(@"Unhandled event received: %@", eventName);
     }
-    
 }
 
-- (void) socketIO:(SocketIO *)socket onError:(NSError *)error {
-    @synchronized(self)
-    {
-        if (_webSocketOpenCompletionHandler)
-            _webSocketOpenCompletionHandler(self, error);
-    }
+#pragma mark ApploggerWatcherDelegate
+
+- (void) apploggerWatchersUpdated:(NSArray*)watchers {
+    if (_watcherDelegate)
+        [_watcherDelegate apploggerWatchersUpdated:watchers];
 }
 
 @end
