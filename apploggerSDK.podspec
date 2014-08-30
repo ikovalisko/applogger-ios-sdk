@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
   s.dependency 'CocoaAsyncSocket', '~> 7.3.4'
   s.dependency 'CocoaLumberjack'
   s.dependency 'NSLogger'
-  s.dependency 'AZSocketIO', '0.0.6'
+  s.dependency 'AZSocketIO-HandShakeData', '0.0.6'
  
   s.prefix_header_contents = '#define NSLog(...) internalLog(__VA_ARGS__);
     
