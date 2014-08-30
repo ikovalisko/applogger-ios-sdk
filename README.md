@@ -10,7 +10,6 @@ The [applogger.io](https://applogger.io) iOS SDK is available through [CocoaPods
 it simply add the following line to your Podfile:
 
 ```
-pod 'AZSocketIO', :git => "git@github.com:dei79/AZSocketIO.git", :branch=> "handshake_data"
 pod 'apploggerSDK', '0.3.4'
 ```
 
