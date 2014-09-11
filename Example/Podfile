@@ -8,8 +8,6 @@ target "applogger-examples" do
 	pod 'AZSocketIO', :git => "git@github.com:dei79/AZSocketIO.git", :branch=> "handshake_data"
 	pod 'apploggerSDK', :path => '../apploggerSDK.podspec'
 	pod 'MBProgressHUD', '>= 0.8'
-	pod 'CocoaLumberjack'
-    pod 'NSLogger', '>=1.2'
 end
 
 target "applogger-examplesTests" do

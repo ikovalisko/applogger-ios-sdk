@@ -25,7 +25,6 @@
     BOOL _isCurrentlyEstablishingAConnection;
     
     NSOperationQueue *_logQueue;
-    ApploggerNSLogger *_nSLoggerInstance;
     
     NSString* _deviceName;
 }
@@ -333,13 +332,6 @@
     });
     
 }
-
-#pragma mark - NSLogger
--(void)registerNSLoggerConnectionWithDelegate:(id<ApploggerNSLoggerDelegate>) delegate{
-    _nSLoggerInstance = [[ApploggerNSLogger alloc] initWithDelegate:delegate];
-    [_nSLoggerInstance registerServer];
-}
-
 
 # pragma watching the connection
 

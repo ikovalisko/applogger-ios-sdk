@@ -19,8 +19,6 @@ Pod::Spec.new do |s|
   s.source_files = 'Classes/iOS/*.{h,m}'
 
   s.dependency 'CocoaAsyncSocket', '~> 7.3.4'
-  s.dependency 'CocoaLumberjack'
-  s.dependency 'NSLogger'
   s.dependency 'AZSocketIO-HandShakeData', '0.0.6'
  
   s.prefix_header_contents = '#define NSLog(...) internalLog(__VA_ARGS__);

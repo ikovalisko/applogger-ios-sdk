@@ -11,8 +11,6 @@
 #import "ApploggerWatcherDelegate.h"
 #import "ApploggerWatcher.h"
 #import "ApploggerLogMessage.h"
-#import "ApploggerDDASLLogger.h"
-#import "ApploggerNSLogger.h"
 
 #define LogLineVersion @"02"
 
@@ -104,11 +102,6 @@ typedef void (^ALRequestWatchersProfileCompletionHandler)(ApploggerWatcher* watc
  * Temporarily Method to get assign link from app
  */
 -(NSString*)getAssignDeviceLink;
-
-/*!
- * Add NSLogger connection for applogger
- */
--(void)registerNSLoggerConnectionWithDelegate:(id<ApploggerNSLoggerDelegate>) delegate;
 
 /*
  * Call this method to request a support session. The support session has the state pending as long the device

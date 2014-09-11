@@ -5,7 +5,6 @@
 //
 
 #import <Availability.h>
-#import "DDLog.h"
 
 #ifndef __IPHONE_5_0
 #warning "This project uses features only available in iOS SDK 5.0 and later."
@@ -15,10 +14,7 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     #import "ApploggerNSLog.h"
-    #import "NSLogger.h"
 #endif
 
-static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
-#warning Enable this to use NSLog override for Applogger
-//#define NSLog(args...) logMessage(__FILE__, __PRETTY_FUNCTION__,args);
+#define NSLog(args...) logMessage(__FILE__, __PRETTY_FUNCTION__,args);

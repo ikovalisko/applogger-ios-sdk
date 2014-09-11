@@ -1,30 +1,28 @@
 PODS:
-  - AFNetworking (2.3.1):
+  - AFNetworking (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
     - AFNetworking/UIKit
-  - AFNetworking/NSURLConnection (2.3.1):
+  - AFNetworking/NSURLConnection (2.4.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.3.1):
+  - AFNetworking/NSURLSession (2.4.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.3.1)
-  - AFNetworking/Security (2.3.1)
-  - AFNetworking/Serialization (2.3.1)
-  - AFNetworking/UIKit (2.3.1):
+  - AFNetworking/Reachability (2.4.1)
+  - AFNetworking/Security (2.4.1)
+  - AFNetworking/Serialization (2.4.1)
+  - AFNetworking/UIKit (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - apploggerSDK (0.3.4-alpha):
-    - AZSocketIO-HandShakeData
+  - apploggerSDK (0.3.4):
+    - AZSocketIO-HandShakeData (= 0.0.6)
     - CocoaAsyncSocket (~> 7.3.4)
-    - CocoaLumberjack
-    - NSLogger
   - AZSocketIO (0.0.6):
     - AFNetworking (~> 2.x)
     - SocketRocket (~> 0.x)
@@ -32,21 +30,13 @@ PODS:
     - AFNetworking (~> 2.x)
     - SocketRocket (~> 0.x)
   - CocoaAsyncSocket (7.3.5)
-  - CocoaLumberjack (1.9.1):
-    - CocoaLumberjack/Extensions
-  - CocoaLumberjack/Core (1.9.1)
-  - CocoaLumberjack/Extensions (1.9.1):
-    - CocoaLumberjack/Core
-  - MBProgressHUD (0.8)
-  - NSLogger (1.2)
+  - MBProgressHUD (0.9)
   - SocketRocket (0.3.1-beta2)
 
 DEPENDENCIES:
   - apploggerSDK (from `../apploggerSDK.podspec`)
   - AZSocketIO (from `git@github.com:dei79/AZSocketIO.git`, branch `handshake_data`)
-  - CocoaLumberjack
   - MBProgressHUD (>= 0.8)
-  - NSLogger (>= 1.2)
 
 EXTERNAL SOURCES:
   apploggerSDK:
@@ -56,14 +46,12 @@ EXTERNAL SOURCES:
     :git: git@github.com:dei79/AZSocketIO.git
 
 SPEC CHECKSUMS:
-  AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
-  apploggerSDK: 1fb1a4a622e304b9d4be59b401996383c8b87fb4
+  AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
+  apploggerSDK: 06140bdb10ba4cf8befac8c3bbca7c7377969d22
   AZSocketIO: df9e8d0308b157aaa220fadee8a83a2575015a4c
   AZSocketIO-HandShakeData: 861699f7568c6be4639659fb42786b904073b4c5
   CocoaAsyncSocket: 45bdbbc1c0a5ed0640ff4c42af325ba43a2f099a
-  CocoaLumberjack: 94accd5749f5c5d15134c8d50f34a973aed8ef69
-  MBProgressHUD: c356980b0cd097f19acec959b49dca5eb8ec31be
-  NSLogger: 3df5dca5dcbf99fe1e5c54931e44880f6e7eb089
+  MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
   SocketRocket: 79a68ae186063c65e1fe6f638b1ae2927aa5f304
 
 COCOAPODS: 0.33.1

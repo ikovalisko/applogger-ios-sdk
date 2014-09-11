@@ -30,15 +30,7 @@
             
                 dispatch_sync(dispatch_get_main_queue(), ^{
 
-                    // Use cocoalumberjack
-                    DDLogVerbose(@"Loop Log Message %d", i);
-
-                    // Use Applogger Logging
-                    //ApploggerLogMessage *message = [[ApploggerLogMessage alloc] init];
-                    //message.message = [NSString stringWithFormat:@"Loop Log Message %d", i];
-                    //message.methodName = @"sendLoopLogClickHandler:";
-                    //[[ApploggerManager sharedApploggerManager] addLogMessage:message];
-                    //message = nil;
+                    NSLog(@"Loop Log Message %d", i);
                     [_logCountLabel setText:[NSString stringWithFormat:@"%d", i]];
                 });
             

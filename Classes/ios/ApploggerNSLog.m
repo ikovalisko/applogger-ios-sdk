@@ -8,7 +8,6 @@
 
 #import "ApploggerNSLog.h"
 #import "ApploggerManager.h"
-#import "ApploggerDDASLLogger.h"
 #include <pthread.h>
 
 @implementation AppLoggerNSLog
