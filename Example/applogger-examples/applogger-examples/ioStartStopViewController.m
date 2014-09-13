@@ -35,6 +35,7 @@
                 [(ioAppDelegate*)[UIApplication sharedApplication].delegate showMessage:@"Applogger connection closed"];
             }else{
                 [(ioAppDelegate*)[UIApplication sharedApplication].delegate showMessage:[NSString stringWithFormat:@"Applogger connection could not be closed : %@", error.localizedDescription]];
+                [_startStopButton setSelected:YES];
             }
 
         }];
@@ -47,6 +48,7 @@
                 [(ioAppDelegate*)[UIApplication sharedApplication].delegate showMessage:@"Applogger connection established"];
             }else{
                 [(ioAppDelegate*)[UIApplication sharedApplication].delegate showMessage:[NSString stringWithFormat:@"Applogger connection failed : %@", error.localizedDescription]];
+                [_startStopButton setSelected:NO];
             }
             
         }];
