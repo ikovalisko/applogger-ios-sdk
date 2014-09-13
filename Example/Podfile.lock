@@ -20,7 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - apploggerSDK (0.3.4):
+  - apploggerSDK (0.4.0):
     - AZSocketIO-HandShakeData (= 0.0.6)
     - CocoaAsyncSocket (~> 7.3.4)
   - AZSocketIO (0.0.6):
@@ -47,7 +47,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
-  apploggerSDK: 06140bdb10ba4cf8befac8c3bbca7c7377969d22
+  apploggerSDK: 44db81c0183ba597e54e67c789be1a8ae083a85b
   AZSocketIO: df9e8d0308b157aaa220fadee8a83a2575015a4c
   AZSocketIO-HandShakeData: 861699f7568c6be4639659fb42786b904073b4c5
   CocoaAsyncSocket: 45bdbbc1c0a5ed0640ff4c42af325ba43a2f099a

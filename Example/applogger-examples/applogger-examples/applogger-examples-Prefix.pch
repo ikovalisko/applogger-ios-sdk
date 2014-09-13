@@ -13,8 +13,5 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
-    #import "ApploggerNSLog.h"
 #endif
 
-
-#define NSLog(args...) logMessage(__FILE__, __PRETTY_FUNCTION__,args);
