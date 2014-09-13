@@ -26,7 +26,7 @@
     [[ApploggerManager sharedApploggerManager] setIsSDKConsoleLogEnable:YES];
     
     // configure local
-    [[ApploggerManager sharedApploggerManager] setServiceUri:@"http://127.0.0.1:3000/api"];
+    //[[ApploggerManager sharedApploggerManager] setServiceUri:@"http://127.0.0.1:3000/api"];
     
     // Set App Id
     [[ApploggerManager sharedApploggerManager] setApplicationIdentifier:@"a3bb9e32854039cd46dcb2f41bd1bfa7"
