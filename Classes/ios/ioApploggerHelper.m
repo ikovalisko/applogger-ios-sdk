@@ -44,6 +44,10 @@
     return [ioBeaverHelper createBase64String:data WithLength:[data length]];
 }
 
++(NSString*)getUniqueDeviceIdentifier{
+    return [ioBeaverHelper getUniqueDeviceIdentifier];
+}
+
 void internalLog(NSString *format, ...) {
     
     if ([[ApploggerManager sharedApploggerManager] isSDKConsoleLogEnable]) {

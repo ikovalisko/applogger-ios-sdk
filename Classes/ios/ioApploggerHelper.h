@@ -25,4 +25,8 @@
  */
 void internalLog(NSString *format, ...);
 
+/*
+ * get a unique id for device
+ */
++(NSString*)getUniqueDeviceIdentifier;
 @end

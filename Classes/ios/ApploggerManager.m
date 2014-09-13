@@ -97,7 +97,7 @@
 -(NSString*)getAssignDeviceLink{
     return [[[NSString
              stringWithFormat:@"%@/%@%@/%@/new?identifier=%@&name=%@&hwtype=%@&ostype=%@", _apiURL, _applicationsPath,
-             _applicationIdentifier, _devicePath, [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString], [[UIDevice currentDevice] name], [ioBeaverHelper getPlatform], [[UIDevice currentDevice] systemVersion]] stringByReplacingOccurrencesOfString:@"harvester/" withString:@""] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+             _applicationIdentifier, _devicePath, [ioBeaverHelper getUniqueDeviceIdentifier], [[UIDevice currentDevice] name], [ioBeaverHelper getPlatform], [[UIDevice currentDevice] systemVersion]] stringByReplacingOccurrencesOfString:@"harvester/" withString:@""] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
 -(void)startApploggerManagerWithCompletion:(ALManagerInitiateCompletionHandler)completion{

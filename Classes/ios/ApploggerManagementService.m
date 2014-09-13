@@ -41,7 +41,7 @@ typedef void (^ALMSNetworkRequestCompletionHandler)(NSError *error);
 }
 
 - (NSString*) deviceIdentifier {
-    return [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+    return [[[UIDevice currentDevice] identifierForVendor] UUIDString];
 }
 
 - (void) announceDeviceWithName:(NSString*)name completion:(ALMSAnnounceDeviceCompletionHandler)completion {
@@ -172,7 +172,7 @@ typedef void (^ALMSNetworkRequestCompletionHandler)(NSError *error);
 - (void) requestWatchersProfile:(NSString*)userIndentifier completion:(ALMSRequestWatchersProfileCompletionHandler)completion {
 
     // create the url for profile
-    NSURL* requestProfileUrl = [self createDeviceRequestUrl:[[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString]];
+    NSURL* requestProfileUrl = [self createDeviceRequestUrl:[ioBeaverHelper getUniqueDeviceIdentifier]];
     requestProfileUrl = [self append:@"/watchers/" toRequestUrl:requestProfileUrl];
     requestProfileUrl = [self append:userIndentifier toRequestUrl:requestProfileUrl];
     
