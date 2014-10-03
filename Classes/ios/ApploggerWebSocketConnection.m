@@ -51,6 +51,9 @@
         // create a new socket
         _webSocket = [[AZSocketIO alloc] initWithHost:host andPort:[NSString stringWithFormat:@"%ld", (long)port] secure:bSecure];
         
+        // set 30 seconds for reconnect and then stop
+        [_webSocket setReconnectionLimit:30];
+        
         // register the event receiver
         [_webSocket setEventReceivedBlock:^(NSString *eventName, id data) {
             [self handleEvent:eventName withData:data];

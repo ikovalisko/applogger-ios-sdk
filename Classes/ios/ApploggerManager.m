@@ -164,10 +164,11 @@
             
             if (_applicationIdentifier) {
                 
-                _loggingIsStarted = YES;
-                
                 [self connectWebSocketWithCompletion:^(BOOL successfull, NSError *error){
-                    
+                
+                    if (!error)
+                        _loggingIsStarted = YES;
+
                     if (completion)
                         completion((error ? NO : YES), error);
                     
@@ -308,21 +309,22 @@
                                 _webSocketConnection = nil;
                             }
 
+                            if (completion) {
+                                completion((error ? NO : YES), error);
+                            }
+                            
                         }];
-                        
+
                     }
                     @catch (NSException *exception) {
                         neterror = [NSError errorWithDomain:@"exception during connection" code:-1 userInfo:nil];
-                    }
-                    @finally
-                    {
-                        
-                        if (completion) {
-                            completion((neterror ? NO : YES), neterror);
-                        }
 
-                    }
+                        if (completion) {
+                            completion(NO, neterror);
+                        }
                         
+                    }
+                    
                 });
                 
             }];
