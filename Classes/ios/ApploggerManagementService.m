@@ -40,8 +40,8 @@ typedef void (^ALMSNetworkRequestCompletionHandler)(NSError *error);
     return self;
 }
 
-- (NSString*) deviceIdentifier {
-    return [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+- (NSString*) deviceIdentifier {    
+    return [ioBeaverHelper getUniqueDeviceIdentifier];
 }
 
 - (void) announceDeviceWithName:(NSString*)name completion:(ALMSAnnounceDeviceCompletionHandler)completion {

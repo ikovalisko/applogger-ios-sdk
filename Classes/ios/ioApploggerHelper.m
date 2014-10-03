@@ -9,6 +9,7 @@
 #import "ioApploggerHelper.h"
 #import "ApploggerManager.h"
 #import <sys/utsname.h>
+#import "UICKeyChainStore.h"
 
 @implementation ioBeaverHelper
 
@@ -45,7 +46,18 @@
 }
 
 +(NSString*)getUniqueDeviceIdentifier{
-    return [ioBeaverHelper getUniqueDeviceIdentifier];
+    // Get the key from key chain
+    NSString *deviceID = [UICKeyChainStore stringForKey:@"ApploggerDeviceID" service:@"io.applogger.ios.sdk.DeviceID"];
+    
+    // check if it exists
+    if (!deviceID) {
+        //if not exists create a guid for this device
+        deviceID = [[NSUUID UUID] UUIDString];
+        // save the guid as key for this device
+        [UICKeyChainStore setString:deviceID forKey:@"ApploggerDeviceID" service:@"io.applogger.ios.sdk.DeviceID"];
+    }
+    
+    return deviceID;
 }
 
 void internalLog(NSString *format, ...) {
