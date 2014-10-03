@@ -11,11 +11,11 @@
 
 @interface ioAppDelegate : UIResponder <UIApplicationDelegate>{
     NSTimer *messageTimer;
-    MBProgressHUD *progressHUD;
+    
 }
 
 @property (strong, nonatomic) UIWindow *window;
-
+@property (nonatomic, strong) MBProgressHUD *progressHUD;
 -(void) showMessage:(NSString*) message;
 
 -(void) hideMessage:(NSTimer *)timer;

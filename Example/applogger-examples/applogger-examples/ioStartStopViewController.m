@@ -40,7 +40,11 @@
 
         }];
     
-    else
+    else{
+        [[(ioAppDelegate*)[[UIApplication sharedApplication] delegate] progressHUD] setDetailsLabelText:nil];
+        [[(ioAppDelegate*)[[UIApplication sharedApplication] delegate] progressHUD] setLabelText:nil];
+        [[(ioAppDelegate*)[[UIApplication sharedApplication] delegate] progressHUD] show:YES];
+        
         [[ApploggerManager sharedApploggerManager] startSessionWithCompletion:^(BOOL successfull, NSError *error) {
         //[[ApploggerManager sharedApploggerManager] startApploggerManagerWithCompletion:^(BOOL successfull, NSError *error){
             
@@ -52,6 +56,7 @@
             }
             
         }];
+    }
     
     [_startStopButton setSelected:!_startStopButton.isSelected];
 }

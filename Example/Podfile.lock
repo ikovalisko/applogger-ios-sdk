@@ -23,6 +23,7 @@ PODS:
   - apploggerSDK (0.4.0):
     - AZSocketIO-HandShakeData (= 0.0.6)
     - CocoaAsyncSocket (~> 7.3.4)
+    - UICKeyChainStore (~> 1.0.5)
   - AZSocketIO (0.0.6):
     - AFNetworking (~> 2.x)
     - SocketRocket (~> 0.x)
@@ -32,6 +33,7 @@ PODS:
   - CocoaAsyncSocket (7.3.5)
   - MBProgressHUD (0.9)
   - SocketRocket (0.3.1-beta2)
+  - UICKeyChainStore (1.0.5)
 
 DEPENDENCIES:
   - apploggerSDK (from `../apploggerSDK.podspec`)
@@ -47,11 +49,12 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
-  apploggerSDK: 44db81c0183ba597e54e67c789be1a8ae083a85b
+  apploggerSDK: e039c3fb0ad8f213cd81c99f89d15bfb8bf98f94
   AZSocketIO: df9e8d0308b157aaa220fadee8a83a2575015a4c
   AZSocketIO-HandShakeData: 861699f7568c6be4639659fb42786b904073b4c5
   CocoaAsyncSocket: 45bdbbc1c0a5ed0640ff4c42af325ba43a2f099a
   MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
   SocketRocket: 79a68ae186063c65e1fe6f638b1ae2927aa5f304
+  UICKeyChainStore: 4f9719600cc70025064e26f28f1210bcfc3b0c35
 
 COCOAPODS: 0.33.1

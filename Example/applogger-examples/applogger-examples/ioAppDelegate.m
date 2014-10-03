@@ -40,11 +40,11 @@
     //[DDLog addLogger:[DDASLLogger sharedInstance]];
     //[DDLog addLogger:[DDTTYLogger sharedInstance]];
     
-    progressHUD = [[MBProgressHUD alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
-    [self.window.rootViewController.view addSubview:progressHUD];
-    [progressHUD setCenter:self.window.center];
-    [progressHUD setLabelText:@"Information"];
-    [progressHUD setLabelFont:[UIFont systemFontOfSize:15.0]];
+    _progressHUD = [[MBProgressHUD alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+    [self.window.rootViewController.view addSubview:_progressHUD];
+    [_progressHUD setCenter:self.window.center];
+    [_progressHUD setLabelText:@"Information"];
+    [_progressHUD setLabelFont:[UIFont systemFontOfSize:15.0]];
         
     return YES;
 }
@@ -79,14 +79,14 @@
 #pragma mark -
 #pragma mark Message HUD Method
 -(void) showMessage:(NSString*) message{
-    [progressHUD setDetailsLabelText:message];
-    [progressHUD show:YES];
-    messageTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(hideMessage:) userInfo:nil repeats:NO];
+    [_progressHUD setDetailsLabelText:message];
+    [_progressHUD show:YES];
+    messageTimer = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(hideMessage:) userInfo:nil repeats:NO];
     
 }
 
 -(void) hideMessage:(NSTimer *)timer{
-    [progressHUD hide:YES];
+    [_progressHUD hide:YES];
     [messageTimer invalidate];
     messageTimer = nil;
 }
