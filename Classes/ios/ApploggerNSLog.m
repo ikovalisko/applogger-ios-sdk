@@ -74,7 +74,7 @@ void logMessage(const char *fileName, const char *functionName, NSString *format
     message.message = body;
     message.methodName = [NSString stringWithFormat:@"%s", [method UTF8String]];
     message.className = className;
-    [[ApploggerManager sharedApploggerManager] addLogMessage:message];
+    [[ApploggerManager sharedManager] addLogMessage:message];
     
 }
 @end

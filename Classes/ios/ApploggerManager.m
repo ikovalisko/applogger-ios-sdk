@@ -37,6 +37,10 @@
 @implementation ApploggerManager
 
 + (ApploggerManager *)sharedApploggerManager {
+    return [ApploggerManager sharedManager];
+}
+
++ (ApploggerManager *)sharedManager {
     static ApploggerManager *sharedInstance = nil;
     static dispatch_once_t pred;
     

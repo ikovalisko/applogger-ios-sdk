@@ -46,7 +46,12 @@ typedef void (^ALRequestWatchersProfileCompletionHandler)(ApploggerWatcher* watc
 /*
  * create a shared instance of this class
  */
-+ (ApploggerManager *)sharedApploggerManager;
++ (ApploggerManager *)sharedApploggerManager DEPRECATED_ATTRIBUTE DEPRECATED_MSG_ATTRIBUTE("Use sharedManager instead.");
+
+/*
+ * create a shared instance of this class
+ */
++ (ApploggerManager *)sharedManager;
 
 /*
  * allows to set a different service uri. Calling this method is totally optional 

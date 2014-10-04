@@ -62,7 +62,7 @@
 
 void internalLog(NSString *format, ...) {
     
-    if ([[ApploggerManager sharedApploggerManager] isSDKConsoleLogEnable]) {
+    if ([[ApploggerManager sharedManager] isSDKConsoleLogEnable]) {
         va_list argumentList;
         va_start(argumentList, format);
         NSMutableString * message = [[NSMutableString alloc] initWithFormat:format

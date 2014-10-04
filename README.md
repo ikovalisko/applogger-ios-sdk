@@ -19,7 +19,7 @@ The SDK needs to be configured and connected with a specific app you generated i
 application:didfinishLaunchingWithOptions: method
 
 ```objc
-[[ApploggerManager sharedApploggerManager] setApplicationIdentifier:@"<AppIdentifier>" AndSecret:@"<AppSecret>"];
+[[ApploggerManager sharedManager] setApplicationIdentifier:@"<AppIdentifier>" AndSecret:@"<AppSecret>"];
 ```
 
 The needed information can be found on the application details page as text or via 
@@ -30,7 +30,7 @@ QR Code. Check out our demo application from the Apple app store.
 sending logs with the following call:  
 
 ```objc
-[[ApploggerManager sharedApploggerManager] 
+[[ApploggerManager sharedManager] 
 				startSessionWithCompletion:^(BOOL successfull, NSError *error){
 ```		
 
@@ -40,7 +40,7 @@ also stops sending when the application goes to the background or you just call 
 following API:
 
 ```objc
-[[ApploggerManager sharedApploggerManager] stopSessionWithCompletion:^(BOOL successfull, NSError *error){
+[[ApploggerManager sharedManager] stopSessionWithCompletion:^(BOOL successfull, NSError *error){
 ```		
 
 ## Overview

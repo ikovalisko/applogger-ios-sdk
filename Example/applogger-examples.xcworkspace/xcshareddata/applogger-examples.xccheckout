@@ -12,7 +12,7 @@
 	<dict>
 		<key>1D075FE8-1B37-45CD-9020-0032DFF3798D</key>
 		<string>https://github.com/pkyeck/socket.IO-objc.git</string>
-		<key>68E74B68-9D9C-4F0D-9986-54AD2C0793B3</key>
+		<key>4B7321AAAEBF5E6D4B02D73F9BFB216E5A083ADA</key>
 		<string>https://github.com/applogger/applogger-ios-sdk.git</string>
 		<key>C6A5F4D0-D9CE-408C-BB88-F60A9D92CB63</key>
 		<string>https://github.com/square/SocketRocket.git</string>
@@ -23,7 +23,7 @@
 	<dict>
 		<key>1D075FE8-1B37-45CD-9020-0032DFF3798D</key>
 		<string>../../socket.io</string>
-		<key>68E74B68-9D9C-4F0D-9986-54AD2C0793B3</key>
+		<key>4B7321AAAEBF5E6D4B02D73F9BFB216E5A083ADA</key>
 		<string>../..</string>
 		<key>C6A5F4D0-D9CE-408C-BB88-F60A9D92CB63</key>
 		<string>../../socket.io/submodules/socket-rocket</string>
@@ -31,16 +31,16 @@
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/applogger/applogger-ios-sdk.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>68E74B68-9D9C-4F0D-9986-54AD2C0793B3</string>
+	<string>4B7321AAAEBF5E6D4B02D73F9BFB216E5A083ADA</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>68E74B68-9D9C-4F0D-9986-54AD2C0793B3</string>
+			<string>4B7321AAAEBF5E6D4B02D73F9BFB216E5A083ADA</string>
 			<key>IDESourceControlWCCName</key>
 			<string>applogger-ios-sdk</string>
 		</dict>
